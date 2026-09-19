@@ -1,0 +1,17 @@
+﻿# Python / virtualenv
+.venv/
+__pycache__/
+*.py[cod]
+
+# Jupyter local state
+.ipynb_checkpoints/
+.jupyter/
+
+# StatsBomb data and generated caches
+data/
+open-data/
+vaep_data/
+
+# OS/editor noise
+.DS_Store
+Thumbs.db
