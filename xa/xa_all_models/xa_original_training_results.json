@@ -1,0 +1,209 @@
+{
+  "definition": "xA = P(completed pass becomes a goal assist)",
+  "target_column": "target_goal_assist",
+  "model_family": "all",
+  "model_families_trained": [
+    "logistic",
+    "xgboost"
+  ],
+  "selection_metric": "neg_log_loss",
+  "tuning_mode": "cv",
+  "cv_folds": 4,
+  "seed": 42,
+  "quick": false,
+  "women_test_share": 0.1,
+  "validation_share": null,
+  "split_summary": {
+    "men_cv_modeling": {
+      "rows": 1136687,
+      "games": 1517,
+      "positives": 2596,
+      "prevalence": 0.0022838301133029583
+    },
+    "women_cv_modeling_non_test": {
+      "rows": 489432,
+      "games": 694,
+      "positives": 1310,
+      "prevalence": 0.0026765720263489104
+    },
+    "women_final_test": {
+      "rows": 54832,
+      "games": 77,
+      "positives": 150,
+      "prevalence": 0.002735628829880362
+    }
+  },
+  "selected_candidates": {
+    "logistic": {
+      "men": {
+        "best_params": {
+          "model__C": 0.3
+        },
+        "best_score": -0.008706503666039707
+      },
+      "women": {
+        "best_params": {
+          "model__C": 0.1
+        },
+        "best_score": -0.009801207237465276
+      }
+    },
+    "xgboost": {
+      "men": {
+        "best_params": {
+          "model__colsample_bytree": 0.88,
+          "model__learning_rate": 0.035,
+          "model__max_depth": 4,
+          "model__min_child_weight": 10,
+          "model__n_estimators": 350,
+          "model__reg_alpha": 0.2,
+          "model__reg_lambda": 8.0,
+          "model__subsample": 0.9
+        },
+        "best_score": -0.008607047609984875
+      },
+      "women": {
+        "best_params": {
+          "model__colsample_bytree": 0.9,
+          "model__learning_rate": 0.015,
+          "model__max_depth": 4,
+          "model__min_child_weight": 15,
+          "model__n_estimators": 700,
+          "model__reg_alpha": 0.4,
+          "model__reg_lambda": 12.0,
+          "model__subsample": 0.92
+        },
+        "best_score": -0.00977469701319933
+      }
+    }
+  },
+  "final_test_metrics": {
+    "logistic_men_model_on_women_final_test": {
+      "rows": 54832,
+      "positives": 150,
+      "prevalence": 0.002735628829880362,
+      "predicted_xa_sum": 156.03702674266825,
+      "observed_assists": 150,
+      "calibration_error_sum": 6.037026742668246,
+      "brier": 0.00236607085311692,
+      "baseline_brier": 0.0027281451647854886,
+      "xa_accuracy": 0.132718125245743,
+      "log_loss": 0.010190532252370517,
+      "average_precision": 0.22439044624684373,
+      "roc_auc": 0.9780761493727369
+    },
+    "logistic_women_model_on_women_final_test": {
+      "rows": 54832,
+      "positives": 150,
+      "prevalence": 0.002735628829880362,
+      "predicted_xa_sum": 155.06953794750433,
+      "observed_assists": 150,
+      "calibration_error_sum": 5.06953794750433,
+      "brier": 0.0023479147232185874,
+      "baseline_brier": 0.0027281451647854886,
+      "xa_accuracy": 0.13937324394422335,
+      "log_loss": 0.01010796805275454,
+      "average_precision": 0.22736398563035223,
+      "roc_auc": 0.977339648635139
+    },
+    "xgboost_men_model_on_women_final_test": {
+      "rows": 54832,
+      "positives": 150,
+      "prevalence": 0.002735628829880362,
+      "predicted_xa_sum": 159.35380233909882,
+      "observed_assists": 150,
+      "calibration_error_sum": 9.35380233909882,
+      "brier": 0.0023485765469708317,
+      "baseline_brier": 0.0027281451647854886,
+      "xa_accuracy": 0.13913065283844672,
+      "log_loss": 0.010019217377302485,
+      "average_precision": 0.2345281864278949,
+      "roc_auc": 0.9807918510661644
+    },
+    "xgboost_women_model_on_women_final_test": {
+      "rows": 54832,
+      "positives": 150,
+      "prevalence": 0.002735628829880362,
+      "predicted_xa_sum": 154.44510426559464,
+      "observed_assists": 150,
+      "calibration_error_sum": 4.445104265594637,
+      "brier": 0.002328684160520245,
+      "baseline_brier": 0.0027281451647854886,
+      "xa_accuracy": 0.14642219535141676,
+      "log_loss": 0.010046721937099799,
+      "average_precision": 0.22772721996281794,
+      "roc_auc": 0.9784816453921461
+    }
+  },
+  "saved_models": {
+    "men_logistic": "xa\\xa_all_models_cv4\\men_logistic_xa_model.joblib",
+    "women_logistic": "xa\\xa_all_models_cv4\\women_logistic_xa_model.joblib",
+    "men_xgboost": "xa\\xa_all_models_cv4\\men_xgboost_xa_model.joblib",
+    "women_xgboost": "xa\\xa_all_models_cv4\\women_xgboost_xa_model.joblib"
+  },
+  "feature_columns": {
+    "numeric": [
+      "start_x",
+      "start_y",
+      "end_x",
+      "end_y",
+      "delta_x",
+      "delta_y",
+      "pass_length",
+      "pass_angle",
+      "start_distance_to_goal",
+      "end_distance_to_goal",
+      "start_angle_to_goal",
+      "end_angle_to_goal",
+      "distance_reduction_to_goal",
+      "abs_delta_y",
+      "abs_pass_angle",
+      "start_distance_to_center",
+      "end_distance_to_center",
+      "goal_angle_gain",
+      "progress_to_goal_rate",
+      "end_x_squared",
+      "end_y_centered_squared"
+    ],
+    "boolean": [
+      "under_pressure",
+      "is_cross",
+      "is_cut_back",
+      "is_switch",
+      "is_through_ball",
+      "is_inswinging",
+      "is_outswinging",
+      "end_in_box",
+      "end_in_six_yard_box",
+      "is_forward_pass",
+      "is_backward_pass",
+      "is_central_end",
+      "is_final_third_end"
+    ],
+    "categorical": [
+      "pass_type",
+      "pass_height",
+      "pass_body_part",
+      "pass_technique",
+      "play_pattern",
+      "pass_context",
+      "end_zone",
+      "start_x_band",
+      "end_x_band",
+      "start_y_band",
+      "end_y_band",
+      "distance_reduction_band",
+      "pass_length_band",
+      "pass_angle_band",
+      "context_height",
+      "context_body_part",
+      "context_end_zone"
+    ]
+  },
+  "code_metadata": {
+    "training_script": "C:\\Users\\victo\\OneDrive\\Desktop\\statsbomb-open-data-experiments\\xa\\train_original_xa_models.py",
+    "git_commit": "d86bd14ff1232fab380e0758d158f5ae18414271",
+    "git_dirty": true,
+    "git_status_short": "M enriched_atomic_vaep_features_competition_events.ipynb\n M enriched_xa_features_competition_events.ipynb\n?? xa/"
+  }
+}
