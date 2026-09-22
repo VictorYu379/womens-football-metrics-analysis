@@ -14,7 +14,7 @@ The data layer filters to completed passes before modeling, so incomplete passes
 ## Structure
 
 - `xa_data.py`
-  - Loads cached pass data, builds the original xA rows, isolates the women final test set by match, and creates match-level CV splits.
+  - Loads cached pass data, rebuilding it from `statsbombpy.sb.competition_events` when missing, builds the original xA rows, isolates the women final test set by match, and creates match-level CV splits.
 - `model_contract.py`
   - Small sklearn-oriented contract: `ModelSpec`, `make_feature_frame(...)`, and `make_preprocessor(...)`.
 - `logistic_model.py`

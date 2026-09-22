@@ -15,3 +15,5 @@ vaep_data/
 # OS/editor noise
 .DS_Store
 Thumbs.db
+
+archive/

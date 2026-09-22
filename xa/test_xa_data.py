@@ -98,7 +98,7 @@ class XaDataTests(unittest.TestCase):
             data_dir = Path(tmpdir)
             self.write_cache(data_dir)
 
-            bundle = xa_data.load_xa_test_and_rest(
+            bundle = xa_data._load_xa_test_and_rest(
                 data_dir=data_dir,
                 women_test_share=0.50,
                 seed=42,
@@ -128,11 +128,112 @@ class XaDataTests(unittest.TestCase):
         self.assertEqual(bundle.split_summary["women_final_test"]["rows"], 8)
         self.assertEqual(bundle.split_summary["women_final_test"]["positives"], 4)
 
+    def test_load_xa_test_and_rest_rebuilds_missing_caches(self) -> None:
+        class FakeStatsBomb:
+            def __init__(self) -> None:
+                self.base_ids = {}
+                for index, competition in enumerate(xa_data.WOMEN_COMPETITIONS + xa_data.MEN_COMPETITIONS, start=1):
+                    key = (
+                        competition["country"],
+                        competition["division"],
+                        competition["season"],
+                        competition["gender"],
+                    )
+                    self.base_ids[key] = index * 10000
+
+            def competition_events(self, country, division, season, gender, fmt, filters):
+                base_id = self.base_ids[(country, division, season, gender)]
+                event_type = filters["type"]
+                rows = []
+                for game_offset in range(4):
+                    match_id = base_id + game_offset
+                    key_pass_id = f"pass-{match_id}-assist"
+                    if event_type == "Pass":
+                        rows.extend(
+                            [
+                                {
+                                    "id": key_pass_id,
+                                    "match_id": match_id,
+                                    "player_id": match_id + 1,
+                                    "player": "Player A",
+                                    "team": "Team A",
+                                    "position": "Center Midfield",
+                                    "location": [40.0, 40.0],
+                                    "pass_end_location": [90.0, 40.0],
+                                    "pass_type": np.nan,
+                                    "pass_height": "Ground Pass",
+                                    "pass_body_part": "Right Foot",
+                                    "pass_technique": np.nan,
+                                    "pass_outcome": np.nan,
+                                    "pass_length": np.nan,
+                                    "pass_angle": np.nan,
+                                    "play_pattern": "Regular Play",
+                                    "pass_assisted_shot_id": f"shot-{match_id}",
+                                    "pass_shot_assist": True,
+                                    "pass_goal_assist": True,
+                                },
+                                {
+                                    "id": f"pass-{match_id}-regular",
+                                    "match_id": match_id,
+                                    "player_id": match_id + 2,
+                                    "player": "Player B",
+                                    "team": "Team A",
+                                    "position": "Right Wing",
+                                    "location": [35.0, 25.0],
+                                    "pass_end_location": [50.0, 30.0],
+                                    "pass_type": np.nan,
+                                    "pass_height": "Ground Pass",
+                                    "pass_body_part": "Right Foot",
+                                    "pass_technique": np.nan,
+                                    "pass_outcome": np.nan,
+                                    "pass_length": np.nan,
+                                    "pass_angle": np.nan,
+                                    "play_pattern": "Regular Play",
+                                    "pass_assisted_shot_id": np.nan,
+                                    "pass_shot_assist": False,
+                                    "pass_goal_assist": False,
+                                },
+                            ]
+                        )
+                    elif event_type == "Shot":
+                        rows.append(
+                            {
+                                "id": f"shot-{match_id}",
+                                "shot_statsbomb_xg": 0.2,
+                                "shot_key_pass_id": key_pass_id,
+                            }
+                        )
+                    else:
+                        raise ValueError(event_type)
+                return pd.DataFrame(rows)
+
+        original_sb = xa_data.sb
+        xa_data.sb = FakeStatsBomb()
+        try:
+            with tempfile.TemporaryDirectory() as tmpdir:
+                data_dir = Path(tmpdir)
+                bundle = xa_data._load_xa_test_and_rest(
+                    data_dir=data_dir,
+                    women_test_share=0.20,
+                    seed=42,
+                    minimum_positive_test_games=3,
+                )
+
+                self.assertTrue((data_dir / "women_xa_passes_competition_events_method.pkl").exists())
+                self.assertTrue((data_dir / "men2015_xa_passes_competition_events_method.pkl").exists())
+        finally:
+            xa_data.sb = original_sb
+
+        self.assertGreater(len(bundle.men_rest), 0)
+        self.assertGreater(len(bundle.women_rest), 0)
+        self.assertGreater(len(bundle.women_test), 0)
+        self.assertTrue(bundle.women_test[xa_data.TARGET_COLUMN].isin([0, 1]).all())
+
     def test_make_match_level_cv_splits_keeps_matches_disjoint(self) -> None:
         with tempfile.TemporaryDirectory() as tmpdir:
             data_dir = Path(tmpdir)
             self.write_cache(data_dir)
-            bundle = xa_data.load_xa_test_and_rest(
+            bundle = xa_data._load_xa_test_and_rest(
                 data_dir=data_dir,
                 women_test_share=0.50,
                 seed=42,

@@ -27,7 +27,6 @@ from xa_data import (
     BOOLEAN_FEATURES,
     CATEGORICAL_FEATURES,
     CV_FOLDS,
-    DEFAULT_DATA_DIR,
     DEFAULT_OUTPUT_DIR,
     FEATURE_COLUMNS,
     NUMERIC_FEATURES,
@@ -55,10 +54,8 @@ OUTPUT_ARTIFACT_GLOBS = ("*_xa_model.joblib",)
 
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="Train original-definition xA models.")
-    parser.add_argument("--data-dir", type=Path, default=DEFAULT_DATA_DIR)
     parser.add_argument("--output-dir", type=Path, default=DEFAULT_OUTPUT_DIR)
     parser.add_argument("--model-family", choices=["logistic", "xgboost", "all"], default="all")
-    parser.add_argument("--women-test-share", type=float, default=WOMEN_TEST_SHARE)
     parser.add_argument("--validation-share", type=float, default=VALIDATION_SHARE)
     parser.add_argument("--tuning-mode", choices=["cv", "holdout"], default="cv")
     parser.add_argument("--selection-metric", choices=["xa_accuracy", "average_precision", "roc_auc", "neg_log_loss", "neg_brier"], default="neg_log_loss")
@@ -245,7 +242,7 @@ def main() -> None:
     args = parse_args()
     prepare_output_dir(args.output_dir, args.overwrite)
 
-    data = load_xa_test_and_rest(args.data_dir, women_test_share=args.women_test_share, seed=args.seed)
+    data = load_xa_test_and_rest()
     men_frame = data.men_rest
     women_frame = data.women_rest
     women_test = data.women_test
@@ -315,9 +312,10 @@ def main() -> None:
         "selection_metric": args.selection_metric,
         "tuning_mode": args.tuning_mode,
         "cv_folds": CV_FOLDS if args.tuning_mode == "cv" else None,
-        "seed": args.seed,
+        "data_seed": RANDOM_SEED,
+        "cv_seed": args.seed,
         "quick": args.quick,
-        "women_test_share": args.women_test_share,
+        "women_test_share": WOMEN_TEST_SHARE,
         "validation_share": args.validation_share if args.tuning_mode == "holdout" else None,
         "split_summary": split_summary,
         "selected_candidates": selected_candidates,

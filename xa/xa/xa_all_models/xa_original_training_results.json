@@ -1,0 +1,165 @@
+{
+  "definition": "xA = P(completed pass becomes a goal assist)",
+  "target_column": "target_goal_assist",
+  "model_family": "xgboost",
+  "model_families_trained": [
+    "xgboost"
+  ],
+  "selection_metric": "neg_log_loss",
+  "tuning_mode": "cv",
+  "cv_folds": 4,
+  "data_seed": 42,
+  "cv_seed": 42,
+  "quick": false,
+  "women_test_share": 0.2,
+  "validation_share": null,
+  "split_summary": {
+    "men_cv_modeling": {
+      "rows": 1136687,
+      "games": 1517,
+      "positives": 2596,
+      "prevalence": 0.0022838301133029583
+    },
+    "women_cv_modeling_non_test": {
+      "rows": 435100,
+      "games": 617,
+      "positives": 1158,
+      "prevalence": 0.002661457136290508
+    },
+    "women_final_test": {
+      "rows": 109164,
+      "games": 154,
+      "positives": 302,
+      "prevalence": 0.0027664797918727784
+    }
+  },
+  "selected_candidates": {
+    "xgboost": {
+      "men": {
+        "best_params": {
+          "model__colsample_bytree": 0.88,
+          "model__learning_rate": 0.035,
+          "model__max_depth": 4,
+          "model__min_child_weight": 10,
+          "model__n_estimators": 350,
+          "model__reg_alpha": 0.2,
+          "model__reg_lambda": 8.0,
+          "model__subsample": 0.9
+        },
+        "best_score": -0.008607047609984875
+      },
+      "women": {
+        "best_params": {
+          "model__colsample_bytree": 0.9,
+          "model__learning_rate": 0.015,
+          "model__max_depth": 4,
+          "model__min_child_weight": 15,
+          "model__n_estimators": 700,
+          "model__reg_alpha": 0.4,
+          "model__reg_lambda": 12.0,
+          "model__subsample": 0.92
+        },
+        "best_score": -0.009738176129758358
+      }
+    }
+  },
+  "final_test_metrics": {
+    "xgboost_men_model_on_women_final_test": {
+      "rows": 109164,
+      "positives": 302,
+      "prevalence": 0.0027664797918727784,
+      "predicted_xa_sum": 302.5839250105705,
+      "observed_assists": 302,
+      "calibration_error_sum": 0.5839250105705105,
+      "brier": 0.0023611099329809656,
+      "baseline_brier": 0.0027588263814339385,
+      "xa_accuracy": 0.14416146341411096,
+      "log_loss": 0.010298067413663164,
+      "average_precision": 0.250328931103499,
+      "roc_auc": 0.9763618797527364
+    },
+    "xgboost_women_model_on_women_final_test": {
+      "rows": 109164,
+      "positives": 302,
+      "prevalence": 0.0027664797918727784,
+      "predicted_xa_sum": 289.7189952061153,
+      "observed_assists": 302,
+      "calibration_error_sum": -12.281004793884676,
+      "brier": 0.002349529324292807,
+      "baseline_brier": 0.0027588263814339385,
+      "xa_accuracy": 0.14835912107248794,
+      "log_loss": 0.01028631272102375,
+      "average_precision": 0.25095599065622803,
+      "roc_auc": 0.973357422806759
+    }
+  },
+  "saved_models": {
+    "men_xgboost": "xa\\xa_all_models\\men_xgboost_xa_model.joblib",
+    "women_xgboost": "xa\\xa_all_models\\women_xgboost_xa_model.joblib"
+  },
+  "feature_columns": {
+    "numeric": [
+      "start_x",
+      "start_y",
+      "end_x",
+      "end_y",
+      "delta_x",
+      "delta_y",
+      "pass_length",
+      "pass_angle",
+      "start_distance_to_goal",
+      "end_distance_to_goal",
+      "start_angle_to_goal",
+      "end_angle_to_goal",
+      "distance_reduction_to_goal",
+      "abs_delta_y",
+      "abs_pass_angle",
+      "start_distance_to_center",
+      "end_distance_to_center",
+      "goal_angle_gain",
+      "progress_to_goal_rate",
+      "end_x_squared",
+      "end_y_centered_squared"
+    ],
+    "boolean": [
+      "under_pressure",
+      "is_cross",
+      "is_cut_back",
+      "is_switch",
+      "is_through_ball",
+      "is_inswinging",
+      "is_outswinging",
+      "end_in_box",
+      "end_in_six_yard_box",
+      "is_forward_pass",
+      "is_backward_pass",
+      "is_central_end",
+      "is_final_third_end"
+    ],
+    "categorical": [
+      "pass_type",
+      "pass_height",
+      "pass_body_part",
+      "pass_technique",
+      "play_pattern",
+      "pass_context",
+      "end_zone",
+      "start_x_band",
+      "end_x_band",
+      "start_y_band",
+      "end_y_band",
+      "distance_reduction_band",
+      "pass_length_band",
+      "pass_angle_band",
+      "context_height",
+      "context_body_part",
+      "context_end_zone"
+    ]
+  },
+  "code_metadata": {
+    "training_script": "C:\\Users\\victo\\OneDrive\\Desktop\\statsbomb-open-data-experiments\\xa\\train_original_xa_models.py",
+    "git_commit": "78277072d743a8340c33f7c13ea803eb0a335b3a",
+    "git_dirty": true,
+    "git_status_short": "M .gitignore\n M enriched_xa_features_competition_events.ipynb\n D enriched_xg_features.ipynb\n M enriched_xg_features_competition_events.ipynb\n M xa/README.md\n M xa/test_xa_data.py\n M xa/train_original_xa_models.py\n D xa/xa_all_models/men_logistic_xa_model.joblib\n D xa/xa_all_models/men_xgboost_xa_model.joblib\n D xa/xa_all_models/model_comparison_summary.md\n D xa/xa_all_models/validation_candidate_metrics.csv\n D xa/xa_all_models/women_final_test_xa_predictions.csv\n D xa/xa_all_models/women_logistic_xa_model.joblib\n D xa/xa_all_models/women_xgboost_xa_model.joblib\n D xa/xa_all_models/xa_original_training_results.json\n M xa/xa_data.py\n?? xa/xa/\n?? xg/"
+  }
+}
