@@ -12,6 +12,11 @@ data/
 open-data/
 vaep_data/
 
+# Atomic-VAEP generated tuning outputs
+atomic_vaep/hist_gradient_boosting_tuning_results*/progress_log.csv
+atomic_vaep/hist_gradient_boosting_tuning_results*/validation_candidate_metrics.csv
+atomic_vaep/hist_gradient_boosting_tuning_results*/women_final_test_atomic_vaep_predictions.csv
+
 # OS/editor noise
 .DS_Store
 Thumbs.db
