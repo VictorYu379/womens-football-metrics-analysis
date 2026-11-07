@@ -1,17 +1,22 @@
 from __future__ import annotations
 
+import importlib
 import json
 import tempfile
 import unittest
 from pathlib import Path
+from types import SimpleNamespace
+from unittest.mock import patch
 
 from minutes.player_minutes import (
+    MATCHES_FILENAME,
     METADATA_FILENAME,
     TOTALS_FILENAME,
     _timestamp_ms,
     build_minutes_tables,
     calculate_match_minutes,
     load_test_player_minutes,
+    main,
 )
 
 
@@ -184,6 +189,78 @@ class PlayerMinutesTests(unittest.TestCase):
     def test_duplicate_test_match_ids_fail_before_reading_data(self):
         with self.assertRaisesRegex(ValueError, "unique"):
             build_minutes_tables([1, 1])
+
+    def test_shared_and_xa_lookups_use_separate_flat_files(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            for prefix, game_ids, minutes in [("", [1, 2], 100), ("xa_", [2, 3], 150)]:
+                (root / (prefix + TOTALS_FILENAME)).write_text(
+                    f"player_id,test_minutes\n1001,{minutes}\n", encoding="utf-8"
+                )
+                (root / (prefix + METADATA_FILENAME)).write_text(
+                    json.dumps({"test_game_ids": game_ids}), encoding="utf-8"
+                )
+            shared = load_test_player_minutes({1, 2}, root)
+            xa = load_test_player_minutes({2, 3}, root, split="xa")
+            self.assertEqual(shared.loc[0, "test_minutes"], 100)
+            self.assertEqual(xa.loc[0, "test_minutes"], 150)
+            with self.assertRaisesRegex(ValueError, "different test split"):
+                load_test_player_minutes({2, 3}, root)
+            with self.assertRaisesRegex(ValueError, "different test split"):
+                load_test_player_minutes({1, 2}, root, split="xa")
+
+    def test_unknown_split_fails_before_reading_files(self):
+        with self.assertRaisesRegex(ValueError, "Unknown minutes split"):
+            load_test_player_minutes({1}, split="unknown")
+
+    def test_generation_uses_canonical_split_and_preserves_other_lookup(self):
+        for split, argv, module_name, loader_name, prefix in [
+            ("shared", [], "xg.xg_data", "load_xg_test_and_rest", ""),
+            ("xa", ["--split", "xa"], "xa.xa_data", "load_xa_test_and_rest", "xa_"),
+        ]:
+            with self.subTest(split=split), tempfile.TemporaryDirectory() as directory:
+                root = Path(directory)
+                (root / "lineups").mkdir()
+                (root / "events").mkdir()
+                lineups, events = make_match()
+                for game_id in [1, 2]:
+                    (root / "lineups" / f"{game_id}.json").write_text(json.dumps(lineups), encoding="utf-8")
+                    (root / "events" / f"{game_id}.json").write_text(json.dumps(events), encoding="utf-8")
+                tables = build_minutes_tables({1, 2}, root)
+                for cache_name in [
+                    "women_matches_competition_events_method.pkl",
+                    "women_xg_shots_competition_events_method.pkl",
+                    "men2015_xg_shots_competition_events_method.pkl",
+                    "women_xa_passes_competition_events_method.pkl",
+                    "men2015_xa_passes_competition_events_method.pkl",
+                ]:
+                    (root / cache_name).touch()
+                other_prefix = "" if split == "xa" else "xa_"
+                for filename in [TOTALS_FILENAME, MATCHES_FILENAME, METADATA_FILENAME]:
+                    (root / (other_prefix + filename)).write_text("unchanged", encoding="utf-8")
+                data_module = importlib.import_module(module_name)
+                with (
+                    patch("minutes.player_minutes.OUTPUT_DIR", root),
+                    patch.object(data_module, "DEFAULT_DATA_DIR", root),
+                    patch.object(data_module, loader_name, return_value=SimpleNamespace(women_test_games={2, 1})) as loader,
+                    patch("minutes.player_minutes.build_minutes_tables", return_value=tables) as build_tables,
+                    patch("builtins.print"),
+                ):
+                    main(argv)
+                loader.assert_called_once_with()
+                build_tables.assert_called_once_with([1, 2])
+                metadata = json.loads((root / (prefix + METADATA_FILENAME)).read_text(encoding="utf-8"))
+                self.assertEqual(metadata["split_source"], f"{module_name}.{loader_name}")
+                self.assertEqual(metadata["seed"], data_module.RANDOM_SEED)
+                self.assertEqual(metadata["test_share"], data_module.WOMEN_TEST_SHARE)
+                self.assertEqual(metadata["test_game_ids"], [1, 2])
+                self.assertEqual(metadata["players"], 22)
+                self.assertEqual(metadata["player_matches"], 44)
+                self.assertEqual(len(load_test_player_minutes({1, 2}, root, split=split)), 22)
+                for filename in [TOTALS_FILENAME, MATCHES_FILENAME, METADATA_FILENAME]:
+                    self.assertTrue((root / (prefix + filename)).is_file())
+                    self.assertEqual((root / (other_prefix + filename)).read_text(encoding="utf-8"), "unchanged")
+                self.assertFalse((root / "xa").exists())
 
 
 if __name__ == "__main__":

@@ -1,0 +1,1564 @@
+{
+  "split_source": "xa.xa_data.load_xa_test_and_rest",
+  "seed": 42,
+  "test_share": 0.2,
+  "test_game_ids": [
+    3881488,
+    3881506,
+    3881509,
+    3881510,
+    3881512,
+    3881524,
+    3881527,
+    3881535,
+    3881536,
+    3881538,
+    3881541,
+    3881542,
+    3881550,
+    3881551,
+    3881564,
+    3881567,
+    3881572,
+    3881583,
+    3881585,
+    3881587,
+    3881591,
+    3881595,
+    3881599,
+    3881609,
+    3881613,
+    3910736,
+    3910740,
+    3910750,
+    3910934,
+    3910943,
+    3910950,
+    3910952,
+    3910953,
+    3910973,
+    3910977,
+    3910982,
+    3910988,
+    3910992,
+    3910994,
+    3910998,
+    3911000,
+    3911001,
+    3911006,
+    3911008,
+    3911296,
+    3911302,
+    3911306,
+    3911312,
+    3911315,
+    3911477,
+    3911480,
+    3911483,
+    3911488,
+    3911494,
+    3911499,
+    3911503,
+    3911513,
+    3911516,
+    3911518,
+    3911521,
+    3911527,
+    3911530,
+    3911532,
+    3911533,
+    3911537,
+    3911538,
+    3911542,
+    3911543,
+    3911550,
+    3911557,
+    3911560,
+    3911627,
+    3911634,
+    3911636,
+    3911764,
+    3911777,
+    3911786,
+    3911787,
+    3911788,
+    3911791,
+    3911794,
+    3911800,
+    3911873,
+    3912189,
+    3912198,
+    3912200,
+    3912201,
+    3912202,
+    3912209,
+    3912210,
+    3912213,
+    3912221,
+    3912222,
+    3912226,
+    3912227,
+    3912229,
+    3912231,
+    3912234,
+    3912239,
+    3912240,
+    3912244,
+    3912246,
+    3912248,
+    3912249,
+    3912252,
+    3912254,
+    3912259,
+    3912483,
+    3912494,
+    3912498,
+    3912506,
+    3912511,
+    3912525,
+    3912528,
+    3912532,
+    3912533,
+    3912534,
+    3912539,
+    3912542,
+    3912543,
+    3912547,
+    3912552,
+    3912592,
+    3912593,
+    3912596,
+    3913077,
+    3913083,
+    3913089,
+    3913093,
+    3913098,
+    3913099,
+    3913103,
+    3913107,
+    3913110,
+    3913113,
+    3913115,
+    3913120,
+    3913121,
+    3913122,
+    3913140,
+    3913152,
+    3913153,
+    3913169,
+    3913170,
+    3913181,
+    3915111,
+    3928997,
+    3929001,
+    3929003,
+    3929004,
+    3929009,
+    3929010,
+    3929014,
+    3929019
+  ],
+  "test_games": 154,
+  "players": 1321,
+  "player_matches": 4706,
+  "minutes_definition": {
+    "include_stoppage_time": true,
+    "include_extra_time": true,
+    "include_temporary_treatment_absences": true,
+    "include_half_time_breaks": false,
+    "include_penalty_shootouts": false,
+    "end_appearance_at": "substitution, dismissal, permanent Player Off, or recorded final whistle",
+    "clock": "period-relative event timestamps, accumulated across played periods",
+    "precision": "integer milliseconds; sum before converting to minutes"
+  },
+  "matches": [
+    {
+      "game_id": 3881488,
+      "period_milliseconds": {
+        "1": 3134395,
+        "2": 3124098
+      },
+      "match_minutes": 104.30821666666667,
+      "players": 30
+    },
+    {
+      "game_id": 3881506,
+      "period_milliseconds": {
+        "1": 2705860,
+        "2": 3083236
+      },
+      "match_minutes": 96.48493333333333,
+      "players": 31
+    },
+    {
+      "game_id": 3881509,
+      "period_milliseconds": {
+        "1": 2820455,
+        "2": 3219723
+      },
+      "match_minutes": 100.66963333333334,
+      "players": 31
+    },
+    {
+      "game_id": 3881510,
+      "period_milliseconds": {
+        "1": 2841374,
+        "2": 3044104
+      },
+      "match_minutes": 98.0913,
+      "players": 27
+    },
+    {
+      "game_id": 3881512,
+      "period_milliseconds": {
+        "1": 2773088,
+        "2": 2888832
+      },
+      "match_minutes": 94.36533333333334,
+      "players": 30
+    },
+    {
+      "game_id": 3881524,
+      "period_milliseconds": {
+        "1": 3030477,
+        "2": 3179776
+      },
+      "match_minutes": 103.50421666666666,
+      "players": 27
+    },
+    {
+      "game_id": 3881527,
+      "period_milliseconds": {
+        "1": 2945240,
+        "2": 3014039
+      },
+      "match_minutes": 99.32131666666666,
+      "players": 30
+    },
+    {
+      "game_id": 3881535,
+      "period_milliseconds": {
+        "1": 2889532,
+        "2": 2946767
+      },
+      "match_minutes": 97.27165,
+      "players": 32
+    },
+    {
+      "game_id": 3881536,
+      "period_milliseconds": {
+        "1": 2823015,
+        "2": 3120143
+      },
+      "match_minutes": 99.05263333333333,
+      "players": 30
+    },
+    {
+      "game_id": 3881538,
+      "period_milliseconds": {
+        "1": 2774353,
+        "2": 3084260
+      },
+      "match_minutes": 97.64355,
+      "players": 30
+    },
+    {
+      "game_id": 3881541,
+      "period_milliseconds": {
+        "1": 2853451,
+        "2": 3189237
+      },
+      "match_minutes": 100.71146666666667,
+      "players": 32
+    },
+    {
+      "game_id": 3881542,
+      "period_milliseconds": {
+        "1": 2775192,
+        "2": 2973599
+      },
+      "match_minutes": 95.81318333333333,
+      "players": 31
+    },
+    {
+      "game_id": 3881550,
+      "period_milliseconds": {
+        "1": 3010738,
+        "2": 3278291
+      },
+      "match_minutes": 104.81715,
+      "players": 31
+    },
+    {
+      "game_id": 3881551,
+      "period_milliseconds": {
+        "1": 2765944,
+        "2": 2888458
+      },
+      "match_minutes": 94.24003333333333,
+      "players": 31
+    },
+    {
+      "game_id": 3881564,
+      "period_milliseconds": {
+        "1": 3064083,
+        "2": 3218805
+      },
+      "match_minutes": 104.7148,
+      "players": 28
+    },
+    {
+      "game_id": 3881567,
+      "period_milliseconds": {
+        "1": 3063926,
+        "2": 3186359
+      },
+      "match_minutes": 104.17141666666667,
+      "players": 28
+    },
+    {
+      "game_id": 3881572,
+      "period_milliseconds": {
+        "1": 2767603,
+        "2": 2977018
+      },
+      "match_minutes": 95.74368333333334,
+      "players": 30
+    },
+    {
+      "game_id": 3881583,
+      "period_milliseconds": {
+        "1": 2893980,
+        "2": 3167813
+      },
+      "match_minutes": 101.02988333333333,
+      "players": 31
+    },
+    {
+      "game_id": 3881585,
+      "period_milliseconds": {
+        "1": 2878530,
+        "2": 3440264
+      },
+      "match_minutes": 105.31323333333333,
+      "players": 32
+    },
+    {
+      "game_id": 3881587,
+      "period_milliseconds": {
+        "1": 3135073,
+        "2": 3228197
+      },
+      "match_minutes": 106.0545,
+      "players": 28
+    },
+    {
+      "game_id": 3881591,
+      "period_milliseconds": {
+        "1": 2741230,
+        "2": 3003734
+      },
+      "match_minutes": 95.7494,
+      "players": 30
+    },
+    {
+      "game_id": 3881595,
+      "period_milliseconds": {
+        "1": 3000265,
+        "2": 3245752
+      },
+      "match_minutes": 104.10028333333334,
+      "players": 32
+    },
+    {
+      "game_id": 3881599,
+      "period_milliseconds": {
+        "1": 2823209,
+        "2": 3029065
+      },
+      "match_minutes": 97.5379,
+      "players": 29
+    },
+    {
+      "game_id": 3881609,
+      "period_milliseconds": {
+        "1": 2882445,
+        "2": 3111349
+      },
+      "match_minutes": 99.89656666666667,
+      "players": 32
+    },
+    {
+      "game_id": 3881613,
+      "period_milliseconds": {
+        "1": 3007636,
+        "2": 3253222
+      },
+      "match_minutes": 104.34763333333333,
+      "players": 29
+    },
+    {
+      "game_id": 3910736,
+      "period_milliseconds": {
+        "1": 2944388,
+        "2": 2934423
+      },
+      "match_minutes": 97.98018333333333,
+      "players": 32
+    },
+    {
+      "game_id": 3910740,
+      "period_milliseconds": {
+        "1": 2885289,
+        "2": 3042909
+      },
+      "match_minutes": 98.8033,
+      "players": 32
+    },
+    {
+      "game_id": 3910750,
+      "period_milliseconds": {
+        "1": 2884783,
+        "2": 2952602
+      },
+      "match_minutes": 97.28975,
+      "players": 30
+    },
+    {
+      "game_id": 3910934,
+      "period_milliseconds": {
+        "1": 2886218,
+        "2": 3076480
+      },
+      "match_minutes": 99.3783,
+      "players": 26
+    },
+    {
+      "game_id": 3910943,
+      "period_milliseconds": {
+        "1": 2711666,
+        "2": 2958001
+      },
+      "match_minutes": 94.49445,
+      "players": 31
+    },
+    {
+      "game_id": 3910950,
+      "period_milliseconds": {
+        "1": 3008691,
+        "2": 3243201
+      },
+      "match_minutes": 104.1982,
+      "players": 31
+    },
+    {
+      "game_id": 3910952,
+      "period_milliseconds": {
+        "1": 2953750,
+        "2": 3031064
+      },
+      "match_minutes": 99.7469,
+      "players": 32
+    },
+    {
+      "game_id": 3910953,
+      "period_milliseconds": {
+        "1": 2913612,
+        "2": 3003039
+      },
+      "match_minutes": 98.61085,
+      "players": 31
+    },
+    {
+      "game_id": 3910973,
+      "period_milliseconds": {
+        "1": 3066401,
+        "2": 3013547
+      },
+      "match_minutes": 101.33246666666666,
+      "players": 32
+    },
+    {
+      "game_id": 3910977,
+      "period_milliseconds": {
+        "1": 2874023,
+        "2": 3068551
+      },
+      "match_minutes": 99.0429,
+      "players": 27
+    },
+    {
+      "game_id": 3910982,
+      "period_milliseconds": {
+        "1": 2819720,
+        "2": 2948274
+      },
+      "match_minutes": 96.13323333333334,
+      "players": 27
+    },
+    {
+      "game_id": 3910988,
+      "period_milliseconds": {
+        "1": 3015246,
+        "2": 3125890
+      },
+      "match_minutes": 102.35226666666667,
+      "players": 31
+    },
+    {
+      "game_id": 3910992,
+      "period_milliseconds": {
+        "1": 2898964,
+        "2": 3011590
+      },
+      "match_minutes": 98.50923333333333,
+      "players": 32
+    },
+    {
+      "game_id": 3910994,
+      "period_milliseconds": {
+        "1": 2883208,
+        "2": 3060591
+      },
+      "match_minutes": 99.06331666666667,
+      "players": 32
+    },
+    {
+      "game_id": 3910998,
+      "period_milliseconds": {
+        "1": 2828985,
+        "2": 3004310
+      },
+      "match_minutes": 97.22158333333333,
+      "players": 32
+    },
+    {
+      "game_id": 3911000,
+      "period_milliseconds": {
+        "1": 2816916,
+        "2": 3073653
+      },
+      "match_minutes": 98.17615,
+      "players": 28
+    },
+    {
+      "game_id": 3911001,
+      "period_milliseconds": {
+        "1": 2761189,
+        "2": 2897942
+      },
+      "match_minutes": 94.31885,
+      "players": 32
+    },
+    {
+      "game_id": 3911006,
+      "period_milliseconds": {
+        "1": 2828221,
+        "2": 2880167
+      },
+      "match_minutes": 95.1398,
+      "players": 30
+    },
+    {
+      "game_id": 3911008,
+      "period_milliseconds": {
+        "1": 2895482,
+        "2": 3002097
+      },
+      "match_minutes": 98.29298333333334,
+      "players": 32
+    },
+    {
+      "game_id": 3911296,
+      "period_milliseconds": {
+        "1": 2768126,
+        "2": 3363377
+      },
+      "match_minutes": 102.19171666666666,
+      "players": 29
+    },
+    {
+      "game_id": 3911302,
+      "period_milliseconds": {
+        "1": 2829094,
+        "2": 3013315
+      },
+      "match_minutes": 97.37348333333334,
+      "players": 31
+    },
+    {
+      "game_id": 3911306,
+      "period_milliseconds": {
+        "1": 2839653,
+        "2": 3001845
+      },
+      "match_minutes": 97.3583,
+      "players": 28
+    },
+    {
+      "game_id": 3911312,
+      "period_milliseconds": {
+        "1": 2939540,
+        "2": 3013686
+      },
+      "match_minutes": 99.22043333333333,
+      "players": 32
+    },
+    {
+      "game_id": 3911315,
+      "period_milliseconds": {
+        "1": 2972146,
+        "2": 2914161
+      },
+      "match_minutes": 98.10511666666666,
+      "players": 32
+    },
+    {
+      "game_id": 3911477,
+      "period_milliseconds": {
+        "1": 2771603,
+        "2": 3034023
+      },
+      "match_minutes": 96.76043333333334,
+      "players": 32
+    },
+    {
+      "game_id": 3911480,
+      "period_milliseconds": {
+        "1": 2801338,
+        "2": 3482307
+      },
+      "match_minutes": 104.72741666666667,
+      "players": 31
+    },
+    {
+      "game_id": 3911483,
+      "period_milliseconds": {
+        "1": 2888090,
+        "2": 2887553
+      },
+      "match_minutes": 96.26071666666667,
+      "players": 31
+    },
+    {
+      "game_id": 3911488,
+      "period_milliseconds": {
+        "1": 2705729,
+        "2": 2942704
+      },
+      "match_minutes": 94.14055,
+      "players": 30
+    },
+    {
+      "game_id": 3911494,
+      "period_milliseconds": {
+        "1": 2892621,
+        "2": 3060611
+      },
+      "match_minutes": 99.22053333333334,
+      "players": 30
+    },
+    {
+      "game_id": 3911499,
+      "period_milliseconds": {
+        "1": 2821415,
+        "2": 3202788
+      },
+      "match_minutes": 100.40338333333334,
+      "players": 32
+    },
+    {
+      "game_id": 3911503,
+      "period_milliseconds": {
+        "1": 2840316,
+        "2": 3125229
+      },
+      "match_minutes": 99.42575,
+      "players": 32
+    },
+    {
+      "game_id": 3911513,
+      "period_milliseconds": {
+        "1": 2707831,
+        "2": 3073528
+      },
+      "match_minutes": 96.35598333333333,
+      "players": 32
+    },
+    {
+      "game_id": 3911516,
+      "period_milliseconds": {
+        "1": 2842085,
+        "2": 3006847
+      },
+      "match_minutes": 97.4822,
+      "players": 31
+    },
+    {
+      "game_id": 3911518,
+      "period_milliseconds": {
+        "1": 2966410,
+        "2": 2893343
+      },
+      "match_minutes": 97.66255,
+      "players": 32
+    },
+    {
+      "game_id": 3911521,
+      "period_milliseconds": {
+        "1": 2916549,
+        "2": 2944858
+      },
+      "match_minutes": 97.69011666666667,
+      "players": 30
+    },
+    {
+      "game_id": 3911527,
+      "period_milliseconds": {
+        "1": 2893080,
+        "2": 2942840
+      },
+      "match_minutes": 97.26533333333333,
+      "players": 30
+    },
+    {
+      "game_id": 3911530,
+      "period_milliseconds": {
+        "1": 2939535,
+        "2": 2946017
+      },
+      "match_minutes": 98.09253333333334,
+      "players": 32
+    },
+    {
+      "game_id": 3911532,
+      "period_milliseconds": {
+        "1": 3005165,
+        "2": 3125453
+      },
+      "match_minutes": 102.17696666666667,
+      "players": 29
+    },
+    {
+      "game_id": 3911533,
+      "period_milliseconds": {
+        "1": 3190915,
+        "2": 3379190
+      },
+      "match_minutes": 109.50175,
+      "players": 32
+    },
+    {
+      "game_id": 3911537,
+      "period_milliseconds": {
+        "1": 2949186,
+        "2": 3065851
+      },
+      "match_minutes": 100.25061666666667,
+      "players": 30
+    },
+    {
+      "game_id": 3911538,
+      "period_milliseconds": {
+        "1": 2938726,
+        "2": 3086435
+      },
+      "match_minutes": 100.41935,
+      "players": 29
+    },
+    {
+      "game_id": 3911542,
+      "period_milliseconds": {
+        "1": 2831656,
+        "2": 3248116
+      },
+      "match_minutes": 101.32953333333333,
+      "players": 30
+    },
+    {
+      "game_id": 3911543,
+      "period_milliseconds": {
+        "1": 2884162,
+        "2": 2886399
+      },
+      "match_minutes": 96.17601666666667,
+      "players": 29
+    },
+    {
+      "game_id": 3911550,
+      "period_milliseconds": {
+        "1": 2885988,
+        "2": 2942075
+      },
+      "match_minutes": 97.13438333333333,
+      "players": 27
+    },
+    {
+      "game_id": 3911557,
+      "period_milliseconds": {
+        "1": 2763204,
+        "2": 3131084
+      },
+      "match_minutes": 98.23813333333334,
+      "players": 32
+    },
+    {
+      "game_id": 3911560,
+      "period_milliseconds": {
+        "1": 2825521,
+        "2": 3093632
+      },
+      "match_minutes": 98.65255,
+      "players": 31
+    },
+    {
+      "game_id": 3911627,
+      "period_milliseconds": {
+        "1": 2935411,
+        "2": 2890627
+      },
+      "match_minutes": 97.10063333333333,
+      "players": 29
+    },
+    {
+      "game_id": 3911634,
+      "period_milliseconds": {
+        "1": 2828658,
+        "2": 3063102
+      },
+      "match_minutes": 98.196,
+      "players": 30
+    },
+    {
+      "game_id": 3911636,
+      "period_milliseconds": {
+        "1": 2913081,
+        "2": 3060184
+      },
+      "match_minutes": 99.55441666666667,
+      "players": 32
+    },
+    {
+      "game_id": 3911764,
+      "period_milliseconds": {
+        "1": 2765678,
+        "2": 2763947
+      },
+      "match_minutes": 92.16041666666666,
+      "players": 31
+    },
+    {
+      "game_id": 3911777,
+      "period_milliseconds": {
+        "1": 2764562,
+        "2": 2826495
+      },
+      "match_minutes": 93.18428333333334,
+      "players": 31
+    },
+    {
+      "game_id": 3911786,
+      "period_milliseconds": {
+        "1": 2848634,
+        "2": 2945903
+      },
+      "match_minutes": 96.57561666666666,
+      "players": 31
+    },
+    {
+      "game_id": 3911787,
+      "period_milliseconds": {
+        "1": 2835420,
+        "2": 2914068
+      },
+      "match_minutes": 95.8248,
+      "players": 32
+    },
+    {
+      "game_id": 3911788,
+      "period_milliseconds": {
+        "1": 2831967,
+        "2": 2902750
+      },
+      "match_minutes": 95.57861666666666,
+      "players": 29
+    },
+    {
+      "game_id": 3911791,
+      "period_milliseconds": {
+        "1": 2776213,
+        "2": 3034069
+      },
+      "match_minutes": 96.83803333333333,
+      "players": 31
+    },
+    {
+      "game_id": 3911794,
+      "period_milliseconds": {
+        "1": 2831096,
+        "2": 3006162
+      },
+      "match_minutes": 97.28763333333333,
+      "players": 31
+    },
+    {
+      "game_id": 3911800,
+      "period_milliseconds": {
+        "1": 2700993,
+        "2": 2763972
+      },
+      "match_minutes": 91.08275,
+      "players": 32
+    },
+    {
+      "game_id": 3911873,
+      "period_milliseconds": {
+        "1": 2745329,
+        "2": 2998062
+      },
+      "match_minutes": 95.72318333333334,
+      "players": 30
+    },
+    {
+      "game_id": 3912189,
+      "period_milliseconds": {
+        "1": 2778131,
+        "2": 3062996
+      },
+      "match_minutes": 97.35211666666666,
+      "players": 32
+    },
+    {
+      "game_id": 3912198,
+      "period_milliseconds": {
+        "1": 2703454,
+        "2": 2890475
+      },
+      "match_minutes": 93.23215,
+      "players": 31
+    },
+    {
+      "game_id": 3912200,
+      "period_milliseconds": {
+        "1": 2773303,
+        "2": 2942987
+      },
+      "match_minutes": 95.2715,
+      "players": 31
+    },
+    {
+      "game_id": 3912201,
+      "period_milliseconds": {
+        "1": 2955127,
+        "2": 3128216
+      },
+      "match_minutes": 101.38905,
+      "players": 30
+    },
+    {
+      "game_id": 3912202,
+      "period_milliseconds": {
+        "1": 2714792,
+        "2": 3146158
+      },
+      "match_minutes": 97.6825,
+      "players": 31
+    },
+    {
+      "game_id": 3912209,
+      "period_milliseconds": {
+        "1": 2943668,
+        "2": 3009057
+      },
+      "match_minutes": 99.21208333333334,
+      "players": 31
+    },
+    {
+      "game_id": 3912210,
+      "period_milliseconds": {
+        "1": 2781382,
+        "2": 3093731
+      },
+      "match_minutes": 97.91855,
+      "players": 30
+    },
+    {
+      "game_id": 3912213,
+      "period_milliseconds": {
+        "1": 2846783,
+        "2": 2917420
+      },
+      "match_minutes": 96.07005,
+      "players": 30
+    },
+    {
+      "game_id": 3912221,
+      "period_milliseconds": {
+        "1": 2763442,
+        "2": 3035340
+      },
+      "match_minutes": 96.64636666666667,
+      "players": 30
+    },
+    {
+      "game_id": 3912222,
+      "period_milliseconds": {
+        "1": 2956296,
+        "2": 3199515
+      },
+      "match_minutes": 102.59685,
+      "players": 31
+    },
+    {
+      "game_id": 3912226,
+      "period_milliseconds": {
+        "1": 2945921,
+        "2": 3170913
+      },
+      "match_minutes": 101.94723333333333,
+      "players": 32
+    },
+    {
+      "game_id": 3912227,
+      "period_milliseconds": {
+        "1": 2767823,
+        "2": 2970919
+      },
+      "match_minutes": 95.6457,
+      "players": 31
+    },
+    {
+      "game_id": 3912229,
+      "period_milliseconds": {
+        "1": 2706744,
+        "2": 2946733
+      },
+      "match_minutes": 94.22461666666666,
+      "players": 32
+    },
+    {
+      "game_id": 3912231,
+      "period_milliseconds": {
+        "1": 2875396,
+        "2": 2948759
+      },
+      "match_minutes": 97.06925,
+      "players": 31
+    },
+    {
+      "game_id": 3912234,
+      "period_milliseconds": {
+        "1": 2936937,
+        "2": 3130818
+      },
+      "match_minutes": 101.12925,
+      "players": 29
+    },
+    {
+      "game_id": 3912239,
+      "period_milliseconds": {
+        "1": 2708811,
+        "2": 3043625
+      },
+      "match_minutes": 95.87393333333333,
+      "players": 30
+    },
+    {
+      "game_id": 3912240,
+      "period_milliseconds": {
+        "1": 2718724,
+        "2": 2909027
+      },
+      "match_minutes": 93.79585,
+      "players": 30
+    },
+    {
+      "game_id": 3912244,
+      "period_milliseconds": {
+        "1": 2788336,
+        "2": 2941826
+      },
+      "match_minutes": 95.5027,
+      "players": 31
+    },
+    {
+      "game_id": 3912246,
+      "period_milliseconds": {
+        "1": 2773015,
+        "2": 2981716
+      },
+      "match_minutes": 95.91218333333333,
+      "players": 32
+    },
+    {
+      "game_id": 3912248,
+      "period_milliseconds": {
+        "1": 2856309,
+        "2": 2992997
+      },
+      "match_minutes": 97.48843333333333,
+      "players": 32
+    },
+    {
+      "game_id": 3912249,
+      "period_milliseconds": {
+        "1": 2763140,
+        "2": 2953534
+      },
+      "match_minutes": 95.2779,
+      "players": 30
+    },
+    {
+      "game_id": 3912252,
+      "period_milliseconds": {
+        "1": 2848004,
+        "2": 2874186
+      },
+      "match_minutes": 95.36983333333333,
+      "players": 32
+    },
+    {
+      "game_id": 3912254,
+      "period_milliseconds": {
+        "1": 2706866,
+        "2": 3060788
+      },
+      "match_minutes": 96.12756666666667,
+      "players": 31
+    },
+    {
+      "game_id": 3912259,
+      "period_milliseconds": {
+        "1": 3005098,
+        "2": 2887200
+      },
+      "match_minutes": 98.20496666666666,
+      "players": 32
+    },
+    {
+      "game_id": 3912483,
+      "period_milliseconds": {
+        "1": 2821455,
+        "2": 3000775
+      },
+      "match_minutes": 97.03716666666666,
+      "players": 31
+    },
+    {
+      "game_id": 3912494,
+      "period_milliseconds": {
+        "1": 2760890,
+        "2": 3080609
+      },
+      "match_minutes": 97.35831666666667,
+      "players": 31
+    },
+    {
+      "game_id": 3912498,
+      "period_milliseconds": {
+        "1": 2702270,
+        "2": 3006783
+      },
+      "match_minutes": 95.15088333333334,
+      "players": 32
+    },
+    {
+      "game_id": 3912506,
+      "period_milliseconds": {
+        "1": 2819714,
+        "2": 2945736
+      },
+      "match_minutes": 96.09083333333334,
+      "players": 32
+    },
+    {
+      "game_id": 3912511,
+      "period_milliseconds": {
+        "1": 2957633,
+        "2": 3002982
+      },
+      "match_minutes": 99.34358333333333,
+      "players": 26
+    },
+    {
+      "game_id": 3912525,
+      "period_milliseconds": {
+        "1": 2765549,
+        "2": 2941082
+      },
+      "match_minutes": 95.11051666666667,
+      "players": 32
+    },
+    {
+      "game_id": 3912528,
+      "period_milliseconds": {
+        "1": 2883712,
+        "2": 3040885
+      },
+      "match_minutes": 98.74328333333334,
+      "players": 32
+    },
+    {
+      "game_id": 3912532,
+      "period_milliseconds": {
+        "1": 2839083,
+        "2": 3005238
+      },
+      "match_minutes": 97.40535,
+      "players": 32
+    },
+    {
+      "game_id": 3912533,
+      "period_milliseconds": {
+        "1": 2828986,
+        "2": 2946637
+      },
+      "match_minutes": 96.26038333333334,
+      "players": 30
+    },
+    {
+      "game_id": 3912534,
+      "period_milliseconds": {
+        "1": 2949851,
+        "2": 2882995
+      },
+      "match_minutes": 97.2141,
+      "players": 29
+    },
+    {
+      "game_id": 3912539,
+      "period_milliseconds": {
+        "1": 2970945,
+        "2": 2958619
+      },
+      "match_minutes": 98.82606666666666,
+      "players": 32
+    },
+    {
+      "game_id": 3912542,
+      "period_milliseconds": {
+        "1": 2765552,
+        "2": 2882686
+      },
+      "match_minutes": 94.1373,
+      "players": 32
+    },
+    {
+      "game_id": 3912543,
+      "period_milliseconds": {
+        "1": 2822285,
+        "2": 3001699
+      },
+      "match_minutes": 97.0664,
+      "players": 30
+    },
+    {
+      "game_id": 3912547,
+      "period_milliseconds": {
+        "1": 2701793,
+        "2": 2945306
+      },
+      "match_minutes": 94.11831666666667,
+      "players": 31
+    },
+    {
+      "game_id": 3912552,
+      "period_milliseconds": {
+        "1": 2756448,
+        "2": 2879288
+      },
+      "match_minutes": 93.92893333333333,
+      "players": 32
+    },
+    {
+      "game_id": 3912592,
+      "period_milliseconds": {
+        "1": 2761003,
+        "2": 3289065
+      },
+      "match_minutes": 100.83446666666667,
+      "players": 28
+    },
+    {
+      "game_id": 3912593,
+      "period_milliseconds": {
+        "1": 2714972,
+        "2": 3121801
+      },
+      "match_minutes": 97.27955,
+      "players": 28
+    },
+    {
+      "game_id": 3912596,
+      "period_milliseconds": {
+        "1": 2885283,
+        "2": 2958968
+      },
+      "match_minutes": 97.40418333333334,
+      "players": 31
+    },
+    {
+      "game_id": 3913077,
+      "period_milliseconds": {
+        "1": 2934294,
+        "2": 3033853
+      },
+      "match_minutes": 99.46911666666666,
+      "players": 32
+    },
+    {
+      "game_id": 3913083,
+      "period_milliseconds": {
+        "1": 2941487,
+        "2": 3776159
+      },
+      "match_minutes": 111.96076666666667,
+      "players": 31
+    },
+    {
+      "game_id": 3913089,
+      "period_milliseconds": {
+        "1": 3128226,
+        "2": 2929133
+      },
+      "match_minutes": 100.95598333333334,
+      "players": 31
+    },
+    {
+      "game_id": 3913093,
+      "period_milliseconds": {
+        "1": 2946858,
+        "2": 3186547
+      },
+      "match_minutes": 102.22341666666667,
+      "players": 31
+    },
+    {
+      "game_id": 3913098,
+      "period_milliseconds": {
+        "1": 2883658,
+        "2": 3363011
+      },
+      "match_minutes": 104.11115,
+      "players": 30
+    },
+    {
+      "game_id": 3913099,
+      "period_milliseconds": {
+        "1": 2890569,
+        "2": 3075192
+      },
+      "match_minutes": 99.42935,
+      "players": 31
+    },
+    {
+      "game_id": 3913103,
+      "period_milliseconds": {
+        "1": 2948070,
+        "2": 3086276
+      },
+      "match_minutes": 100.57243333333334,
+      "players": 31
+    },
+    {
+      "game_id": 3913107,
+      "period_milliseconds": {
+        "1": 2826002,
+        "2": 3067251
+      },
+      "match_minutes": 98.22088333333333,
+      "players": 26
+    },
+    {
+      "game_id": 3913110,
+      "period_milliseconds": {
+        "1": 2761784,
+        "2": 3192063
+      },
+      "match_minutes": 99.23078333333333,
+      "players": 30
+    },
+    {
+      "game_id": 3913113,
+      "period_milliseconds": {
+        "1": 2887737,
+        "2": 3440937
+      },
+      "match_minutes": 105.4779,
+      "players": 30
+    },
+    {
+      "game_id": 3913115,
+      "period_milliseconds": {
+        "1": 2887007,
+        "2": 3119001
+      },
+      "match_minutes": 100.10013333333333,
+      "players": 27
+    },
+    {
+      "game_id": 3913120,
+      "period_milliseconds": {
+        "1": 3172671,
+        "2": 3124820
+      },
+      "match_minutes": 104.95818333333334,
+      "players": 32
+    },
+    {
+      "game_id": 3913121,
+      "period_milliseconds": {
+        "1": 2887579,
+        "2": 3185909
+      },
+      "match_minutes": 101.2248,
+      "players": 29
+    },
+    {
+      "game_id": 3913122,
+      "period_milliseconds": {
+        "1": 2827639,
+        "2": 3135606
+      },
+      "match_minutes": 99.38741666666667,
+      "players": 28
+    },
+    {
+      "game_id": 3913140,
+      "period_milliseconds": {
+        "1": 3108802,
+        "2": 3124742
+      },
+      "match_minutes": 103.8924,
+      "players": 32
+    },
+    {
+      "game_id": 3913152,
+      "period_milliseconds": {
+        "1": 2944418,
+        "2": 3020075
+      },
+      "match_minutes": 99.40821666666666,
+      "players": 29
+    },
+    {
+      "game_id": 3913153,
+      "period_milliseconds": {
+        "1": 3187404,
+        "2": 3290511
+      },
+      "match_minutes": 107.96525,
+      "players": 29
+    },
+    {
+      "game_id": 3913169,
+      "period_milliseconds": {
+        "1": 2765519,
+        "2": 3182067
+      },
+      "match_minutes": 99.12643333333334,
+      "players": 31
+    },
+    {
+      "game_id": 3913170,
+      "period_milliseconds": {
+        "1": 2946171,
+        "2": 3171967
+      },
+      "match_minutes": 101.96896666666666,
+      "players": 32
+    },
+    {
+      "game_id": 3913181,
+      "period_milliseconds": {
+        "1": 2936585,
+        "2": 3182891
+      },
+      "match_minutes": 101.99126666666666,
+      "players": 31
+    },
+    {
+      "game_id": 3915111,
+      "period_milliseconds": {
+        "1": 3006194,
+        "2": 3062186,
+        "3": 1033481,
+        "4": 1057653
+      },
+      "match_minutes": 135.9919,
+      "players": 34
+    },
+    {
+      "game_id": 3928997,
+      "period_milliseconds": {
+        "1": 2773498,
+        "2": 3029138
+      },
+      "match_minutes": 96.7106,
+      "players": 31
+    },
+    {
+      "game_id": 3929001,
+      "period_milliseconds": {
+        "1": 2717496,
+        "2": 2943942
+      },
+      "match_minutes": 94.3573,
+      "players": 32
+    },
+    {
+      "game_id": 3929003,
+      "period_milliseconds": {
+        "1": 2759075,
+        "2": 3119445
+      },
+      "match_minutes": 97.97533333333334,
+      "players": 31
+    },
+    {
+      "game_id": 3929004,
+      "period_milliseconds": {
+        "1": 2859716,
+        "2": 3246959
+      },
+      "match_minutes": 101.77791666666667,
+      "players": 32
+    },
+    {
+      "game_id": 3929009,
+      "period_milliseconds": {
+        "1": 2942762,
+        "2": 2957164
+      },
+      "match_minutes": 98.3321,
+      "players": 29
+    },
+    {
+      "game_id": 3929010,
+      "period_milliseconds": {
+        "1": 2764392,
+        "2": 2999029
+      },
+      "match_minutes": 96.05701666666667,
+      "players": 31
+    },
+    {
+      "game_id": 3929014,
+      "period_milliseconds": {
+        "1": 2825427,
+        "2": 3062930
+      },
+      "match_minutes": 98.13928333333334,
+      "players": 31
+    },
+    {
+      "game_id": 3929019,
+      "period_milliseconds": {
+        "1": 3090398,
+        "2": 3060848
+      },
+      "match_minutes": 102.52076666666666,
+      "players": 32
+    }
+  ]
+}

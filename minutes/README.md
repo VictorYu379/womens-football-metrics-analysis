@@ -1,8 +1,10 @@
-# Shared test-set player minutes
+# Test-set player minutes
 
-This lookup supports the current xG, xT, VAEP and Atomic-VAEP notebooks, whose
-test match IDs are identical: 231 of the 771 women's matches. xA is excluded.
-No notebook predictions, training settings or player filters are changed.
+The shared lookup supports xG, xT, VAEP and Atomic-VAEP, whose current test
+match IDs are identical: 231 of the 771 women's matches (30%, seed 42).
+A separate xA lookup covers its current 154 test matches (20%, seed 42).
+Both lookups use the same appearance-time calculation, but their totals must
+not be mixed. No notebook predictions, training settings or player filters are changed.
 
 ## Generate
 
@@ -12,25 +14,37 @@ From the project root, using the existing virtual environment:
 .\.venv\Scripts\python.exe -m minutes.player_minutes
 ```
 
-The script reads the current xG split through `load_xg_test_and_rest()` and the
-local StatsBomb event and lineup JSON files. Existing xG caches are required;
-the script does not train models or download data.
+This default command regenerates only the shared lookup. To generate only xA:
 
-Outputs are stored in `minutes/`, alongside this script. Existing xG input
-caches remain in `vaep_data/`.
+```powershell
+.\.venv\Scripts\python.exe -m minutes.player_minutes --split xa
+```
 
-- `women_test_player_minutes.csv`: one row per appearing player, with
-  `player_id`, `player_name`, `test_games_played`, `test_milliseconds` and
-  `test_minutes`. Join on `player_id`, not player name.
-- `women_test_player_match_minutes.csv`: one row per player and test match,
-  including team, starter status and that appearance's duration.
-- `women_test_minutes_metadata.json`: exact test match IDs, split settings,
-  time conventions and recorded durations for every match.
+The script reads the selected current split through `load_xg_test_and_rest()`
+or `load_xa_test_and_rest()` and the local StatsBomb event and lineup JSON files.
+Existing caches for the selected pipeline are required; the script does not
+train models or download data. Generating either lookup leaves the other untouched.
+
+Outputs are stored directly in `minutes/`, alongside this script. Input caches
+remain in `vaep_data/`; no xA subdirectory is created.
+
+- `women_test_player_minutes.csv`: shared per-player totals, with `player_id`,
+  `player_name`, `test_games_played`, `test_milliseconds` and `test_minutes`.
+- `women_test_player_match_minutes.csv`: shared per-player, per-match details.
+- `women_test_minutes_metadata.json`: shared test match IDs and time conventions.
+- `xa_women_test_player_minutes.csv`: per-player totals for the xA test matches.
+- `xa_women_test_player_match_minutes.csv`: xA per-player, per-match details.
+- `xa_women_test_minutes_metadata.json`: xA test match IDs and time conventions.
+
+The xA files use the same schemas as the shared files. Join totals on `player_id`,
+not player name. The xA lookup follows the current 20% code configuration, not
+the historical 77-match (10%) outputs still saved in the xA notebook.
+Restart its kernel and rerun the notebook before pairing its predictions with these minutes.
 
 ## Read from a notebook
 
-The loader checks the exact test match IDs, preventing accidental reuse with
-xA or a changed split:
+The loader checks the exact test match IDs, preventing accidental reuse across
+splits. The shared lookup remains the default:
 
 ```python
 from minutes.player_minutes import load_test_player_minutes
@@ -39,11 +53,13 @@ player_minutes = load_test_player_minutes(bundle.women_test_games)
 ```
 
 In xT, pass `WOMEN_TEST_GAMES` instead of `bundle.women_test_games`.
-For direct inspection, the totals are also an ordinary UTF-8 CSV:
+In xA, explicitly select its separate lookup:
 
 ```python
-player_minutes = pd.read_csv("minutes/women_test_player_minutes.csv")
+player_minutes = load_test_player_minutes(bundle.women_test_games, split="xa")
 ```
+
+For direct inspection, the totals are also ordinary UTF-8 CSVs.
 
 ## Time convention
 
@@ -64,8 +80,8 @@ player_minutes = pd.read_csv("minutes/women_test_player_minutes.csv")
   56.654 recorded minutes including stoppage; its duration is retained as-is.
 
 The CSVs contain denominators only. No per-90 values or rankings are calculated.
-If a notebook's test split changes, verify the shared-match assumption again and
-regenerate the lookup before using it.
+If a notebook's test split changes, verify its exact match IDs again and regenerate
+the corresponding lookup before using it.
 
 ## Tests
 

@@ -1,7 +1,8 @@
-"""Build reusable player minutes for the shared women's test matches."""
+"""Build reusable player minutes for shared or xA women's test matches."""
 
 from __future__ import annotations
 
+import argparse
 import json
 from decimal import Decimal
 from pathlib import Path
@@ -182,32 +183,61 @@ def build_minutes_tables(test_game_ids, open_data_dir: Path = OPEN_DATA_DIR) -> 
     return totals, player_matches, match_summaries
 
 
-def load_test_player_minutes(test_game_ids, data_dir: Path = OUTPUT_DIR) -> pd.DataFrame:
-    """Load the totals only if their exact test match IDs match the caller's split."""
-    metadata = json.loads((data_dir / METADATA_FILENAME).read_text(encoding="utf-8"))
+def _minutes_filenames(split: str) -> dict[str, str]:
+    if split not in {"shared", "xa"}:
+        raise ValueError(f"Unknown minutes split: {split}")
+    prefix = "xa_" if split == "xa" else ""
+    return {
+        "totals": prefix + TOTALS_FILENAME,
+        "matches": prefix + MATCHES_FILENAME,
+        "metadata": prefix + METADATA_FILENAME,
+    }
+
+
+def load_test_player_minutes(test_game_ids, data_dir: Path = OUTPUT_DIR, *, split: str = "shared") -> pd.DataFrame:
+    """Load the selected lookup only if its exact test match IDs match the caller's split."""
+    filenames = _minutes_filenames(split)
+    metadata = json.loads((data_dir / filenames["metadata"]).read_text(encoding="utf-8"))
     if set(map(int, test_game_ids)) != set(metadata["test_game_ids"]):
-        raise ValueError("Saved minutes belong to a different test split. xA is not included.")
-    totals = pd.read_csv(data_dir / TOTALS_FILENAME)
+        raise ValueError("Saved minutes belong to a different test split. Select the matching lookup or regenerate it.")
+    totals = pd.read_csv(data_dir / filenames["totals"])
     if totals["player_id"].isna().any() or totals["player_id"].duplicated().any():
         raise ValueError("Saved minutes must have exactly one row per player ID.")
     return totals
 
 
-def main() -> None:
-    from xg.xg_data import DEFAULT_DATA_DIR, RANDOM_SEED, WOMEN_TEST_SHARE, load_xg_test_and_rest
+def main(argv: list[str] | None = None) -> None:
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument(
+        "--split", choices=["shared", "xa"], default="shared",
+        help="Generate the shared xG/xT/VAEP/Atomic-VAEP lookup or the separate xA lookup.",
+    )
+    args = parser.parse_args(argv)
+    filenames = _minutes_filenames(args.split)
+    if args.split == "xa":
+        from xa.xa_data import DEFAULT_DATA_DIR, RANDOM_SEED, WOMEN_TEST_SHARE, load_xa_test_and_rest as load_test_data
 
-    required_caches = [
-        "women_matches_competition_events_method.pkl",
-        "women_xg_shots_competition_events_method.pkl",
-        "men2015_xg_shots_competition_events_method.pkl",
-    ]
+        split_source = "xa.xa_data.load_xa_test_and_rest"
+        required_caches = [
+            "women_xa_passes_competition_events_method.pkl",
+            "men2015_xa_passes_competition_events_method.pkl",
+        ]
+    else:
+        from xg.xg_data import DEFAULT_DATA_DIR, RANDOM_SEED, WOMEN_TEST_SHARE, load_xg_test_and_rest as load_test_data
+
+        split_source = "xg.xg_data.load_xg_test_and_rest"
+        required_caches = [
+            "women_matches_competition_events_method.pkl",
+            "women_xg_shots_competition_events_method.pkl",
+            "men2015_xg_shots_competition_events_method.pkl",
+        ]
     for filename in required_caches:
         if not (DEFAULT_DATA_DIR / filename).exists():
-            raise FileNotFoundError(f"Prepare the existing xG caches before running this script: {filename}")
-    test_game_ids = sorted(load_xg_test_and_rest().women_test_games)
+            raise FileNotFoundError(f"Prepare the existing {args.split} split caches before running this script: {filename}")
+    test_game_ids = sorted(load_test_data().women_test_games)
     totals, player_matches, match_summaries = build_minutes_tables(test_game_ids)
     metadata = {
-        "split_source": "xg.xg_data.load_xg_test_and_rest",
+        "split_source": split_source,
         "seed": RANDOM_SEED,
         "test_share": WOMEN_TEST_SHARE,
         "test_game_ids": test_game_ids,
@@ -227,11 +257,11 @@ def main() -> None:
         "matches": match_summaries,
     }
     OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
-    totals.to_csv(OUTPUT_DIR / TOTALS_FILENAME, index=False, float_format="%.9f")
-    player_matches.to_csv(OUTPUT_DIR / MATCHES_FILENAME, index=False, float_format="%.9f")
-    (OUTPUT_DIR / METADATA_FILENAME).write_text(json.dumps(metadata, indent=2) + "\n", encoding="utf-8")
+    totals.to_csv(OUTPUT_DIR / filenames["totals"], index=False, float_format="%.9f")
+    player_matches.to_csv(OUTPUT_DIR / filenames["matches"], index=False, float_format="%.9f")
+    (OUTPUT_DIR / filenames["metadata"]).write_text(json.dumps(metadata, indent=2) + "\n", encoding="utf-8")
     print(f"Saved {len(totals):,} players across {len(test_game_ids)} test matches ({len(player_matches):,} appearances).")
-    print(OUTPUT_DIR / TOTALS_FILENAME)
+    print(OUTPUT_DIR / filenames["totals"])
 
 
 if __name__ == "__main__":
