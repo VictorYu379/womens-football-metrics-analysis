@@ -8,8 +8,10 @@ workflows.
 
 from __future__ import annotations
 
+from contextlib import ExitStack
 from dataclasses import dataclass
 from pathlib import Path
+import tempfile
 import warnings
 
 import numpy as np
@@ -23,11 +25,13 @@ if not hasattr(np, "complex_"):
     np.complex_ = np.complex128
 
 import pandas as pd
+import pyarrow as pa
+import pyarrow.parquet as pq
 from sklearn.model_selection import GroupKFold, StratifiedGroupKFold
 from socceraction.data.statsbomb import StatsBombLoader
 import socceraction.spadl as spadl
+import socceraction.spadl.config as spadl_config
 import socceraction.vaep.features as fs
-import socceraction.vaep.labels as lab
 
 warnings.filterwarnings("ignore", category=FutureWarning)
 _CHAINED_ASSIGNMENT_ERROR = getattr(pd.errors, "ChainedAssignmentError", None)
@@ -43,6 +47,7 @@ ALIGN_ATTACKING_DIRECTION = True
 ATTACKING_DIRECTION = "left_to_right"
 N_PREVIOUS_ACTIONS = 3
 VAEP_LABEL_HORIZON = 10
+VAEP_DATA_VERSION = 2
 TARGET_COLUMNS = ("scores", "concedes")
 
 _SCRIPT_DIR = Path(__file__).resolve().parent
@@ -122,6 +127,7 @@ class VaepDataBundle:
     label_horizon: int = VAEP_LABEL_HORIZON
     split_unit: str = "match"
     attacking_direction: str = ATTACKING_DIRECTION
+    data_version: int = VAEP_DATA_VERSION
 
 
 def load_vaep_test_and_rest() -> VaepDataBundle:
@@ -273,27 +279,60 @@ def make_events_compatible_with_socceraction(events: pd.DataFrame) -> pd.DataFra
     return events
 
 
-def make_vaep_rows(actions: pd.DataFrame, dataset_label: str) -> pd.DataFrame:
-    """Build VAEP action rows with metadata, labels, and numeric features."""
+def make_vaep_gamestates(game_actions: pd.DataFrame) -> list[pd.DataFrame]:
+    """Align individually left-to-right actions to the current team's frame in each window."""
+    gamestates = fs.gamestates(game_actions, N_PREVIOUS_ACTIONS)
+    current_teams = gamestates[0]["team_id"]
+    for previous_actions in gamestates[1:]:
+        opposite_team = previous_actions["team_id"].ne(current_teams)
+        for column in ("start_x", "end_x"):
+            previous_actions.loc[opposite_team, column] = (
+                spadl_config.field_length - previous_actions.loc[opposite_team, column]
+            )
+        for column in ("start_y", "end_y"):
+            previous_actions.loc[opposite_team, column] = (
+                spadl_config.field_width - previous_actions.loc[opposite_team, column]
+            )
+    return gamestates
+
+
+def make_vaep_labels(game_actions: pd.DataFrame, horizon: int = VAEP_LABEL_HORIZON) -> pd.DataFrame:
+    """Label scoring/conceding in the current-plus-future window, including all own goals."""
+    if not isinstance(horizon, (int, np.integer)) or horizon < 1:
+        raise ValueError("The VAEP label horizon must be a positive integer.")
+    teams = game_actions["team_id"].to_numpy()
+    goals = (
+        game_actions["type_name"].str.contains("shot") & game_actions["result_name"].eq("success")
+    ).to_numpy(dtype=bool)
+    own_goals = game_actions["result_name"].eq("owngoal").to_numpy(dtype=bool)
+    scores = np.zeros(len(game_actions), dtype=bool)
+    concedes = np.zeros(len(game_actions), dtype=bool)
+    for offset in range(min(horizon, len(game_actions))):
+        current = slice(0, len(game_actions) - offset)
+        future = slice(offset, len(game_actions))
+        same_team = teams[current] == teams[future]
+        scores[current] |= (goals[future] & same_team) | (own_goals[future] & ~same_team)
+        concedes[current] |= (goals[future] & ~same_team) | (own_goals[future] & same_team)
+    return pd.DataFrame({"scores": scores.astype(int), "concedes": concedes.astype(int)})
+
+
+def _iter_vaep_rows(actions: pd.DataFrame, dataset_label: str):
+    """Generate one complete match at a time without mutating the SPADL action cache."""
     actions = add_spadl_names_if_needed(actions)
-    row_frames = []
+    if actions.empty:
+        raise ValueError(f"No VAEP rows created for {dataset_label}.")
 
     for game_id, game_actions in actions.groupby("game_id", sort=False):
         game_actions = game_actions.reset_index(drop=True)
-        gamestates = fs.gamestates(game_actions, N_PREVIOUS_ACTIONS)
+        if not game_actions["action_id"].is_monotonic_increasing or game_actions["action_id"].duplicated().any():
+            raise ValueError(f"VAEP actions must have unique, increasing action IDs within game {game_id}.")
+        gamestates = make_vaep_gamestates(game_actions)
 
         game_features = pd.concat(
             [feature_function(gamestates) for feature_function in VAEP_FEATURE_FUNCTIONS],
             axis=1,
         ).fillna(0)
-        game_labels = pd.concat(
-            [
-                lab.scores(game_actions, VAEP_LABEL_HORIZON),
-                lab.concedes(game_actions, VAEP_LABEL_HORIZON),
-            ],
-            axis=1,
-        ).fillna(0)
-        game_labels = game_labels.loc[:, list(TARGET_COLUMNS)].astype(int)
+        game_labels = make_vaep_labels(game_actions)
 
         if len(game_features) != len(game_labels) or len(game_features) != len(game_actions):
             raise ValueError(
@@ -310,20 +349,19 @@ def make_vaep_rows(actions: pd.DataFrame, dataset_label: str) -> pd.DataFrame:
         if overlap:
             raise ValueError(f"VAEP feature columns overlap metadata/target columns: {sorted(overlap)}")
 
-        row_frames.append(
-            pd.concat(
-                [
-                    game_metadata.reset_index(drop=True),
-                    game_labels.reset_index(drop=True),
-                    game_features.reset_index(drop=True),
-                ],
-                axis=1,
-            )
+        yield pd.concat(
+            [
+                game_metadata.reset_index(drop=True),
+                game_labels.reset_index(drop=True),
+                game_features.reset_index(drop=True),
+            ],
+            axis=1,
         )
 
-    if not row_frames:
-        raise ValueError(f"No VAEP rows created for {dataset_label}.")
-    return pd.concat(row_frames, ignore_index=True)
+
+def make_vaep_rows(actions: pd.DataFrame, dataset_label: str) -> pd.DataFrame:
+    """Build VAEP action rows with corrected window coordinates and own-goal labels."""
+    return pd.concat(_iter_vaep_rows(actions, dataset_label), ignore_index=True)
 
 
 def action_rows_from_frame(frame: pd.DataFrame) -> pd.DataFrame:
@@ -463,21 +501,45 @@ def _assert_match_level_holdout(train_frame: pd.DataFrame, test_frame: pd.DataFr
 
 
 def _read_or_build_vaep_rows(data_dir: Path, open_data_dir: Path, cache_tag: str) -> pd.DataFrame:
+    rows_cache = ensure_vaep_rows_cache(data_dir, open_data_dir, cache_tag)
+    return pd.read_parquet(rows_cache)
+
+
+def ensure_vaep_rows_cache(data_dir: Path, open_data_dir: Path, cache_tag: str) -> Path:
+    """Build the current cache version match by match without loading all feature rows."""
     rows_cache = _vaep_rows_cache_path(data_dir, cache_tag)
     if rows_cache.exists():
         print(f"[cache] {cache_tag} VAEP rows: {rows_cache.name}")
-        return pd.read_parquet(rows_cache).copy()
+        return rows_cache
 
     competitions = COMPETITIONS_BY_CACHE_TAG.get(cache_tag)
     if competitions is None:
         raise FileNotFoundError(f"Missing VAEP row cache and no competition list for {cache_tag}: {rows_cache}")
 
     actions, _ = load_spadl_actions(competitions, cache_tag, data_dir=data_dir, open_data_dir=open_data_dir)
-    rows = make_vaep_rows(actions, cache_tag)
     data_dir.mkdir(parents=True, exist_ok=True)
-    rows.to_parquet(rows_cache, index=False)
-    print(f"[cache] wrote {cache_tag} VAEP rows: {len(rows):,} actions")
-    return rows.copy()
+    print(f"[prepare] {cache_tag}: building VAEP data version {VAEP_DATA_VERSION} from cached SPADL actions", flush=True)
+    with tempfile.NamedTemporaryFile(prefix=f".{rows_cache.stem}.", suffix=".tmp", dir=data_dir, delete=False) as temporary_file:
+        temporary_path = Path(temporary_file.name)
+    row_count = 0
+    try:
+        with ExitStack() as stack:
+            writer = None
+            for game_count, rows in enumerate(_iter_vaep_rows(actions, cache_tag), start=1):
+                table = pa.Table.from_pandas(rows, preserve_index=False)
+                if writer is None:
+                    writer = stack.enter_context(pq.ParquetWriter(temporary_path, table.schema))
+                writer.write_table(table)
+                row_count += len(rows)
+                if game_count % 100 == 0:
+                    print(f"[prepare] {cache_tag}: {game_count:,} games, {row_count:,} actions", flush=True)
+        if row_count != len(actions):
+            raise ValueError("The VAEP cache must retain every SPADL action exactly once.")
+        temporary_path.replace(rows_cache)
+    finally:
+        temporary_path.unlink(missing_ok=True)
+    print(f"[cache] wrote {cache_tag} VAEP v{VAEP_DATA_VERSION} rows: {row_count:,} actions", flush=True)
+    return rows_cache
 
 
 def _align_feature_columns(men: pd.DataFrame, women: pd.DataFrame) -> tuple[pd.DataFrame, pd.DataFrame, tuple[str, ...]]:
@@ -506,7 +568,7 @@ def _spadl_cache_paths(data_dir: Path, cache_tag: str, align_attacking_direction
 
 def _vaep_rows_cache_path(data_dir: Path, cache_tag: str) -> Path:
     direction_suffix = "ltr" if ALIGN_ATTACKING_DIRECTION else "home_perspective"
-    return data_dir / f"{cache_tag}_vaep_rows_{direction_suffix}_n{N_PREVIOUS_ACTIONS}_h{VAEP_LABEL_HORIZON}.parquet"
+    return data_dir / f"{cache_tag}_vaep_rows_{direction_suffix}_n{N_PREVIOUS_ACTIONS}_h{VAEP_LABEL_HORIZON}_v{VAEP_DATA_VERSION}.parquet"
 
 
 def _empty_positions() -> pd.DataFrame:

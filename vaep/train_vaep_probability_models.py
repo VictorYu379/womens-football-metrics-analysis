@@ -556,6 +556,7 @@ def main() -> None:
         "validation_share": args.validation_share if args.tuning_mode == "holdout" else None,
         "n_previous_actions": N_PREVIOUS_ACTIONS,
         "label_horizon": VAEP_LABEL_HORIZON,
+        "data_version": data.data_version,
         "split_summary": split_summary,
         "selected_candidates": selected_candidates,
         "final_test_metrics": final_test_metrics,
