@@ -7,8 +7,10 @@ training can happen, then reserves the women final test set at match level.
 
 from __future__ import annotations
 
+from contextlib import ExitStack
 from dataclasses import dataclass
 from pathlib import Path
+import tempfile
 import warnings
 
 import numpy as np
@@ -21,9 +23,12 @@ if not hasattr(np, "complex_"):
     np.complex_ = np.complex128
 
 import pandas as pd
+import pyarrow as pa
+import pyarrow.parquet as pq
 from sklearn.model_selection import GroupKFold, StratifiedGroupKFold
 from socceraction.data.statsbomb import StatsBombLoader
 import socceraction.spadl as spadl
+from socceraction.spadl import config as spadl_config
 import socceraction.atomic.spadl as atomic_spadl
 import socceraction.atomic.vaep.features as fs
 import socceraction.atomic.vaep.labels as lab
@@ -40,6 +45,7 @@ CV_FOLDS = 4
 
 ALIGN_ATTACKING_DIRECTION = True
 ATTACKING_DIRECTION = "left_to_right"
+ATOMIC_VAEP_DATA_VERSION = 2
 N_PREVIOUS_ACTIONS = 5
 VAEP_LABEL_HORIZON = 10
 TARGET_COLUMNS = ("scores", "concedes")
@@ -123,6 +129,7 @@ class AtomicVaepDataBundle:
     label_horizon: int = VAEP_LABEL_HORIZON
     split_unit: str = "match"
     attacking_direction: str = ATTACKING_DIRECTION
+    data_version: int = ATOMIC_VAEP_DATA_VERSION
 
 
 def load_atomic_vaep_test_and_rest() -> AtomicVaepDataBundle:
@@ -187,17 +194,43 @@ def load_atomic_actions(
 ) -> tuple[pd.DataFrame, pd.DataFrame]:
     """Load Atomic-SPADL actions, rebuilding from aligned SPADL when needed."""
     data_dir.mkdir(parents=True, exist_ok=True)
-    atomic_cache = _atomic_cache_path(data_dir, cache_tag)
+    atomic_cache = ensure_atomic_actions_cache(data_dir, open_data_dir, competitions, cache_tag)
     positions_cache = data_dir / f"{cache_tag}_pos.parquet"
-    if atomic_cache.exists():
-        print(f"[cache] {cache_tag} Atomic-SPADL actions: {atomic_cache.name}")
-        actions = pd.read_parquet(atomic_cache).copy()
-        positions = pd.read_parquet(positions_cache).copy() if positions_cache.exists() else _empty_positions()
-        return add_atomic_names_if_needed(actions), positions
-
-    actions = rebuild_atomic_cache_from_spadl(data_dir, open_data_dir, competitions, cache_tag)
+    actions = pd.read_parquet(atomic_cache)
     positions = pd.read_parquet(positions_cache).copy() if positions_cache.exists() else _empty_positions()
     return add_atomic_names_if_needed(actions), positions
+
+
+def convert_to_atomic_ltr(game_actions: pd.DataFrame) -> pd.DataFrame:
+    """Convert one individually aligned SPADL match in a common frame, then align each atom."""
+    if game_actions.empty or game_actions["game_id"].nunique() != 1:
+        raise ValueError("Atomic conversion requires exactly one non-empty complete match.")
+    game_actions = game_actions.sort_values(["period_id", "time_seconds", "action_id"]).reset_index(drop=True)
+    reference_team = game_actions["team_id"].iloc[0]
+    common_actions = spadl.play_left_to_right(game_actions, home_team_id=reference_team)
+    atomic_actions = atomic_spadl.convert_to_atomic(common_actions)
+    _reflect_atomic_coordinates(atomic_actions, atomic_actions["team_id"].ne(reference_team))
+    if "league" in game_actions.columns:
+        atomic_actions["league"] = game_actions["league"].iloc[0]
+    return add_atomic_names_if_needed(atomic_actions)
+
+
+def _reflect_atomic_coordinates(actions: pd.DataFrame, selected: pd.Series) -> None:
+    """Rotate selected atomic positions and displacement vectors by 180 degrees in place."""
+    actions.loc[selected, "x"] = spadl_config.field_length - actions.loc[selected, "x"]
+    actions.loc[selected, "y"] = spadl_config.field_width - actions.loc[selected, "y"]
+    actions.loc[selected, ["dx", "dy"]] = -actions.loc[selected, ["dx", "dy"]]
+
+
+def ensure_atomic_actions_cache(
+    data_dir: Path, open_data_dir: Path, competitions: list[dict], cache_tag: str,
+) -> Path:
+    """Reuse only the current coordinate-corrected Atomic-SPADL cache version."""
+    atomic_cache = _atomic_cache_path(data_dir, cache_tag)
+    if atomic_cache.exists():
+        print(f"[cache] {cache_tag} Atomic-SPADL actions: {atomic_cache.name}")
+        return atomic_cache
+    return _write_atomic_cache_from_spadl(data_dir, open_data_dir, competitions, cache_tag)
 
 
 def rebuild_atomic_cache_from_spadl(
@@ -206,40 +239,30 @@ def rebuild_atomic_cache_from_spadl(
     competitions: list[dict],
     cache_tag: str,
 ) -> pd.DataFrame:
-    """Rebuild Atomic-SPADL cache from the left-to-right SPADL cache."""
+    """Rebuild corrected Atomic-SPADL from SPADL and return the full action frame."""
+    atomic_cache = _write_atomic_cache_from_spadl(data_dir, open_data_dir, competitions, cache_tag)
+    return pd.read_parquet(atomic_cache)
+
+
+def _write_atomic_cache_from_spadl(
+    data_dir: Path, open_data_dir: Path, competitions: list[dict], cache_tag: str,
+) -> Path:
     spadl_cache = _spadl_cache_path(data_dir, cache_tag)
-    if spadl_cache.exists():
-        print(f"[rebuild] {cache_tag}: reading aligned SPADL cache {spadl_cache.name}")
-        spadl_actions = pd.read_parquet(spadl_cache).copy()
-    else:
-        spadl_actions, _ = load_spadl_actions(
+    if not spadl_cache.exists():
+        load_spadl_actions(
             competitions,
             cache_tag,
             data_dir=data_dir,
             open_data_dir=open_data_dir,
         )
 
-    league_by_game = (
-        spadl_actions.drop_duplicates("game_id").set_index("game_id")["league"].to_dict()
-        if "league" in spadl_actions.columns
-        else {}
-    )
-    atomic_frames = []
-    game_ids = spadl_actions["game_id"].drop_duplicates().tolist()
-    for game_index, (game_id, game_actions) in enumerate(spadl_actions.groupby("game_id", sort=False), start=1):
-        game_actions = game_actions.sort_values(["period_id", "time_seconds", "action_id"]).reset_index(drop=True)
-        atomic_actions = atomic_spadl.convert_to_atomic(game_actions)
-        if league_by_game:
-            atomic_actions["league"] = league_by_game.get(game_id)
-        atomic_frames.append(atomic_actions)
-        if game_index % 50 == 0 or game_index == len(game_ids):
-            print(f"    atomic converted {game_index}/{len(game_ids)} games")
-
-    atomic_actions = add_atomic_names_if_needed(pd.concat(atomic_frames, ignore_index=True))
     atomic_cache = _atomic_cache_path(data_dir, cache_tag)
-    atomic_actions.to_parquet(atomic_cache, index=False)
-    print(f"[cache] wrote {atomic_cache.name}: {len(atomic_actions):,} Atomic-SPADL actions")
-    return atomic_actions.copy()
+    print(f"[prepare] {cache_tag}: converting SPADL in a common coordinate frame", flush=True)
+    _write_game_frames(
+        (convert_to_atomic_ltr(game_actions) for game_actions in _iter_parquet_games(spadl_cache)),
+        atomic_cache,
+    )
+    return atomic_cache
 
 
 def load_spadl_actions(
@@ -298,13 +321,26 @@ def load_spadl_actions(
     return add_spadl_names_if_needed(actions), positions
 
 
+def make_atomic_vaep_gamestates(game_actions: pd.DataFrame) -> list[pd.DataFrame]:
+    """Express every historical atom in the current team's coordinate frame per window."""
+    action_positions = np.arange(len(game_actions))
+    gamestates = [
+        game_actions.iloc[np.maximum(action_positions - offset, 0)].reset_index(drop=True)
+        for offset in range(N_PREVIOUS_ACTIONS)
+    ]
+    current_teams = gamestates[0]["team_id"]
+    for previous_actions in gamestates[1:]:
+        _reflect_atomic_coordinates(previous_actions, previous_actions["team_id"].ne(current_teams))
+    return gamestates
+
+
 def make_atomic_vaep_rows(actions: pd.DataFrame, dataset_label: str) -> pd.DataFrame:
     """Build Atomic-VAEP rows from complete game sequences."""
     actions = add_atomic_names_if_needed(actions).reset_index(drop=True)
     row_frames = []
     for game_id, game_actions in actions.groupby("game_id", sort=False):
         game_actions = game_actions.reset_index(drop=True)
-        gamestates = fs.gamestates(game_actions, N_PREVIOUS_ACTIONS)
+        gamestates = make_atomic_vaep_gamestates(game_actions)
         game_features = pd.concat(
             [feature_function(gamestates) for feature_function in ATOMIC_VAEP_FEATURE_FUNCTIONS],
             axis=1,
@@ -514,28 +550,87 @@ def feature_columns_from_frame(frame: pd.DataFrame) -> tuple[str, ...]:
 
 
 def _read_or_build_atomic_vaep_rows(data_dir: Path, open_data_dir: Path, cache_tag: str) -> pd.DataFrame:
+    rows_cache = ensure_atomic_vaep_rows_cache(data_dir, open_data_dir, cache_tag)
+    return pd.read_parquet(rows_cache)
+
+
+def ensure_atomic_vaep_rows_cache(data_dir: Path, open_data_dir: Path, cache_tag: str) -> Path:
+    """Build corrected atomic actions/features match by match without loading all feature rows."""
     rows_cache = _atomic_vaep_rows_cache_path(data_dir, cache_tag)
     if rows_cache.exists():
         print(f"[cache] {cache_tag} Atomic-VAEP rows: {rows_cache.name}")
-        return pd.read_parquet(rows_cache).copy()
+        return rows_cache
     competitions = COMPETITIONS_BY_CACHE_TAG.get(cache_tag)
     if competitions is None:
         raise FileNotFoundError(f"Missing Atomic-VAEP row cache and no competitions for {cache_tag}: {rows_cache}")
-    actions, _ = load_atomic_actions(competitions, cache_tag, data_dir=data_dir, open_data_dir=open_data_dir)
-    rows = make_atomic_vaep_rows(actions, cache_tag)
-    data_dir.mkdir(parents=True, exist_ok=True)
-    rows.to_parquet(rows_cache, index=False)
-    print(f"[cache] wrote {cache_tag} Atomic-VAEP rows: {len(rows):,} actions")
-    return rows.copy()
+    atomic_cache = ensure_atomic_actions_cache(data_dir, open_data_dir, competitions, cache_tag)
+    print(f"[prepare] {cache_tag}: building Atomic-VAEP data version {ATOMIC_VAEP_DATA_VERSION}", flush=True)
+    _write_game_frames(
+        (make_atomic_vaep_rows(game_actions, cache_tag) for game_actions in _iter_parquet_games(atomic_cache)),
+        rows_cache,
+        expected_rows=pq.read_metadata(atomic_cache).num_rows,
+    )
+    return rows_cache
+
+
+def _iter_parquet_games(cache_path: Path, batch_size: int = 16384):
+    """Stream complete matches from a cache whose rows are contiguous within each match."""
+    completed_games = set()
+    pending_game = None
+    pending_parts = []
+    with pq.ParquetFile(cache_path) as parquet_file:
+        for batch in parquet_file.iter_batches(batch_size=batch_size, use_threads=False):
+            frame = batch.to_pandas()
+            if frame["game_id"].isna().any():
+                raise ValueError(f"Missing game IDs in {cache_path.name}.")
+            starts = np.flatnonzero(frame["game_id"].ne(frame["game_id"].shift()).to_numpy())
+            ends = [*starts[1:], len(frame)]
+            for start, end in zip(starts, ends):
+                game_id = frame["game_id"].iloc[start]
+                if pending_game is not None and game_id != pending_game:
+                    completed_games.add(pending_game)
+                    yield pd.concat(pending_parts, ignore_index=True)
+                    pending_parts = []
+                if game_id in completed_games:
+                    raise ValueError(f"Match {game_id} is not contiguous in {cache_path.name}.")
+                pending_game = game_id
+                pending_parts.append(frame.iloc[start:end].copy())
+    if pending_parts:
+        yield pd.concat(pending_parts, ignore_index=True)
+
+
+def _write_game_frames(game_frames, cache_path: Path, expected_rows: int | None = None) -> None:
+    """Publish a parquet cache only after every complete match has been written successfully."""
+    cache_path.parent.mkdir(parents=True, exist_ok=True)
+    with tempfile.NamedTemporaryFile(prefix=f".{cache_path.stem}.", suffix=".tmp", dir=cache_path.parent, delete=False) as temporary_file:
+        temporary_path = Path(temporary_file.name)
+    row_count = 0
+    try:
+        with ExitStack() as stack:
+            writer = None
+            for game_count, rows in enumerate(game_frames, start=1):
+                table = pa.Table.from_pandas(rows, preserve_index=False)
+                if writer is None:
+                    writer = stack.enter_context(pq.ParquetWriter(temporary_path, table.schema))
+                writer.write_table(table.cast(writer.schema))
+                row_count += len(rows)
+                if game_count % 100 == 0:
+                    print(f"[prepare] {cache_path.name}: {game_count:,} games, {row_count:,} actions", flush=True)
+        if not row_count or (expected_rows is not None and row_count != expected_rows):
+            raise ValueError(f"Invalid row count for {cache_path.name}: {row_count}; expected {expected_rows}.")
+        temporary_path.replace(cache_path)
+    finally:
+        temporary_path.unlink(missing_ok=True)
+    print(f"[cache] wrote {cache_path.name}: {row_count:,} actions", flush=True)
 
 
 def _align_feature_columns(men: pd.DataFrame, women: pd.DataFrame) -> tuple[pd.DataFrame, pd.DataFrame, tuple[str, ...]]:
     feature_columns = tuple(pd.Index(feature_columns_from_frame(women)).union(feature_columns_from_frame(men)))
     aligned = []
-    for frame in (men.copy(), women.copy()):
-        for column in feature_columns:
-            if column not in frame.columns:
-                frame[column] = 0
+    for frame in (men, women):
+        missing_columns = {column: 0 for column in feature_columns if column not in frame.columns}
+        if missing_columns:
+            frame = frame.assign(**missing_columns)
         aligned.append(frame)
     return aligned[0], aligned[1], feature_columns
 
@@ -550,7 +645,7 @@ def _statsbomb_loader(open_data_dir: Path) -> StatsBombLoader:
 
 def _atomic_cache_path(data_dir: Path, cache_tag: str) -> Path:
     direction_suffix = "ltr" if ALIGN_ATTACKING_DIRECTION else "home_perspective"
-    return data_dir / f"{cache_tag}_atomic_spadl_{direction_suffix}.parquet"
+    return data_dir / f"{cache_tag}_atomic_spadl_{direction_suffix}_v{ATOMIC_VAEP_DATA_VERSION}.parquet"
 
 
 def _spadl_cache_path(data_dir: Path, cache_tag: str) -> Path:
@@ -560,7 +655,7 @@ def _spadl_cache_path(data_dir: Path, cache_tag: str) -> Path:
 
 def _atomic_vaep_rows_cache_path(data_dir: Path, cache_tag: str) -> Path:
     direction_suffix = "ltr" if ALIGN_ATTACKING_DIRECTION else "home_perspective"
-    return data_dir / f"{cache_tag}_atomic_vaep_rows_{direction_suffix}_n{N_PREVIOUS_ACTIONS}_h{VAEP_LABEL_HORIZON}.parquet"
+    return data_dir / f"{cache_tag}_atomic_vaep_rows_{direction_suffix}_n{N_PREVIOUS_ACTIONS}_h{VAEP_LABEL_HORIZON}_v{ATOMIC_VAEP_DATA_VERSION}.parquet"
 
 
 def _empty_positions() -> pd.DataFrame:

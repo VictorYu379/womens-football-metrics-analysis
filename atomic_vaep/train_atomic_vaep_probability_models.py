@@ -498,6 +498,7 @@ def main() -> None:
         event="data",
         status="ready",
         message={
+            "data_version": data.data_version,
             "men_full_rows": len(men_frame),
             "women_train_rows": len(women_frame),
             "women_final_test_rows": len(women_test),
@@ -623,6 +624,7 @@ def main() -> None:
         "tuning_mode": args.tuning_mode,
         "cv_folds": CV_FOLDS if args.tuning_mode == "cv" else None,
         "data_seed": RANDOM_SEED,
+        "data_version": data.data_version,
         "cv_seed": args.seed,
         "quick": args.quick,
         "skip_final_fit": args.skip_final_fit,
