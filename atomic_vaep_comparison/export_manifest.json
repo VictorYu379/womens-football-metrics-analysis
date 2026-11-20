@@ -1,0 +1,356 @@
+{
+  "format_version": 3,
+  "source": "C:\\Users\\victo\\OneDrive\\Desktop\\statsbomb-open-data-experiments\\paper_experiments",
+  "model_pairs": 19,
+  "model_files": 38,
+  "model_bytes": 34941769,
+  "scope": {
+    "base_models": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "adaptation_budgets": [
+      540
+    ],
+    "adaptation_methods": [
+      "intercept",
+      "logistic",
+      "beta",
+      "context",
+      "continued_match"
+    ],
+    "main_comparison": [
+      "D",
+      "C + best adapter"
+    ],
+    "legacy_continuation": "Excluded from this bundle; retained only in the source experiments"
+  },
+  "seed_selection": "One shared seed per source/method/budget; minimize mean absolute relative distance to the four-seed scores/concedes means; ties within 1e-12 use smaller seed. Posthoc test selection, not independent validation.",
+  "seed_selection_sha256": "536e4d404fcbef3ddf7fccb56388045f90bfdf1324881be8c637dd419086f9cd",
+  "packages": {
+    "numpy": "2.5.3",
+    "pandas": "3.0.5",
+    "scipy": "1.18.1",
+    "scikit-learn": "1.9.0",
+    "joblib": "1.6.0",
+    "pyarrow": "25.0.1",
+    "socceraction": "1.4.2",
+    "matplotlib": "3.11.1",
+    "mplsoccer": "1.8.0"
+  },
+  "input_manifest_sha256": "8a6776d5a2952281a21a5d4fd0930d8627e405d3f150476556c31bbc03d98cc2",
+  "reference_sha256": {
+    "models/A": "ef6d12748684a9dea1122f21acd2586ace35b11ac7d3781ec454f557c04f306c",
+    "models/B": "dd7229eaf1bda8f839cd9db8f2c2a2a5317cae9b47d7c1d65c640217d3be3715",
+    "models/C": "d992f7c3bf4afd716b84b1625c792d9638e8e8b40114ced35bb600a8410e14e9",
+    "models/D": "532fa82a67e8ef1b76b0fe6c13523dce945c118eaad50364f628194fbe2d93d8",
+    "runs/C/beta/b540_s17": "a96ea018a900c505191d7b8aa547eeb5433cc4bb80b7fa13e8348583d31a5885",
+    "runs/C/context/b540_s71": "148706411f007b1abb3082a4a450a29f17420dabf02b3063fc2cf7abd0303691",
+    "runs/C/continued_match/b540_s17": "9431b433babbd5bcb7195b3637ce7b4eca342dd2f54713a8a6803b7b70ad04b5",
+    "runs/C/intercept/b540_s17": "d2e6dcf0bfed1d7f6d691b15690272a49686ed34c72140ba04bf77c26094de44",
+    "runs/C/logistic/b540_s17": "5b8d077c9ea8d920893e769ca44e92057d955e4f75ff119cc8748672017a2f2e"
+  },
+  "models": [
+    {
+      "directory": "models/A",
+      "source": "A",
+      "method": "direct",
+      "budget": 0,
+      "seed": 42,
+      "fingerprint": "ec255e00ff23fb9aa09a0e27fc6d78a022aefecc15947c585d5e9e4555d696e9",
+      "base_directory": null,
+      "legacy_continuation": false,
+      "files_sha256": {
+        "scores.joblib": "b836153c3a20cd44604bba7eb369959dab8ceea663df51d98afd4018163f34df",
+        "concedes.joblib": "c4f7b7a78a0b45cb285dff16b2768d96adad70a301f6652812d7be2f3f033c86",
+        "concedes_fit.json": "0a868354b692ab9649535717278e0d851c1c188abcc6c45fe975711d3d3e394b",
+        "fit.json": "9f5ce1718e2db6c5352ba96a894aaa0b0b93e8b51e480711b530f4c96cadfbe4",
+        "scores_fit.json": "fa817b22f257b6cff0cc797f0b59a21799c5ae49051583d1a528d6a70a0b9c93"
+      }
+    },
+    {
+      "directory": "models/B",
+      "source": "B",
+      "method": "direct",
+      "budget": 0,
+      "seed": 42,
+      "fingerprint": "ec255e00ff23fb9aa09a0e27fc6d78a022aefecc15947c585d5e9e4555d696e9",
+      "base_directory": null,
+      "legacy_continuation": false,
+      "files_sha256": {
+        "scores.joblib": "dacb28b95fb26837168c9c362dbc12bd082c3c5443fef88f6bb22a0ee76e96c1",
+        "concedes.joblib": "4008bd2f3785f1e6f8f28a0a18daf6e06986019261f84b9e7e193027f4b45479",
+        "concedes_fit.json": "d1b83ce1a9530b8ac481cbb96a0fffa1ed715b252c4fae9080b6470afea44d5a",
+        "fit.json": "253afcfb4c9f0e45a05aade63066b0a45819b1dd4f0ec9174ba29aa9909cc756",
+        "scores_fit.json": "2cd905bc8fee7046705a1af4bc3a2c015b9ad658b917e1a7795a8130002cdd74"
+      }
+    },
+    {
+      "directory": "models/C",
+      "source": "C",
+      "method": "direct",
+      "budget": 0,
+      "seed": 42,
+      "fingerprint": "ec255e00ff23fb9aa09a0e27fc6d78a022aefecc15947c585d5e9e4555d696e9",
+      "base_directory": null,
+      "legacy_continuation": false,
+      "files_sha256": {
+        "scores.joblib": "3bd300068da10d69a0898926da3e14ababc7a3e54665bd24dc8cb8e9c420b18b",
+        "concedes.joblib": "b1bf239031a6b207c35fc13db5573cd06b97e1a32e62266ab847a9e0f112c4cf",
+        "concedes_fit.json": "5a7cd9d7e0befc66ec3d6c71be29dd2d74ca4ffe0ecad6e22f421f344eee77ef",
+        "fit.json": "1acae480ed5783892696cf907ed3b87481c54f81ba3d13848e19b8b19f99c813",
+        "scores_fit.json": "b94d9a920fa2a61851b05b131bbb8f392052cba8f441339a84117d2ef4a8eebe"
+      }
+    },
+    {
+      "directory": "models/D",
+      "source": "D",
+      "method": "direct",
+      "budget": 540,
+      "seed": 42,
+      "fingerprint": "ec255e00ff23fb9aa09a0e27fc6d78a022aefecc15947c585d5e9e4555d696e9",
+      "base_directory": null,
+      "legacy_continuation": false,
+      "files_sha256": {
+        "scores.joblib": "56a1f555c8ca21b5999a06a58fd35e555991ffba535a4adb15b556ad2d0510d3",
+        "concedes.joblib": "411dd48101a02e83f663ec6ce4a34fe5a00f1fdfcef84f32945c1b3da3f698a8",
+        "concedes_fit.json": "cad78bfee7bbf1c3b932765f44ba7cd5722d9cd5e9121942cc6ed6fdde13a2cf",
+        "fit.json": "b98e54ba8cd11b26f9986a8ad29ef4f9da08cee2cc8dfe5b7dfc5d25a96da7b0",
+        "scores_fit.json": "5413dbf21a3250c8fc7a8303faa7344076feb0e7643a8e5ccc7df068960b25e8"
+      }
+    },
+    {
+      "directory": "runs/A/beta/b540_s17",
+      "source": "A",
+      "method": "beta",
+      "budget": 540,
+      "seed": 17,
+      "fingerprint": "ec255e00ff23fb9aa09a0e27fc6d78a022aefecc15947c585d5e9e4555d696e9",
+      "base_directory": "models/A",
+      "legacy_continuation": false,
+      "files_sha256": {
+        "scores.joblib": "0f86355ce0ef5d263769c08038827dbe5d8a9e55f71174940c38ed21b9654133",
+        "concedes.joblib": "b20cba63f7e12d42328830346219fe74747f21c666d438b171e769b468a3b2aa",
+        "fit.json": "3eb127eed546211f1a0f88aba3126ef5a3e3acab72f360095ddfac08d5288988"
+      }
+    },
+    {
+      "directory": "runs/A/context/b540_s43",
+      "source": "A",
+      "method": "context",
+      "budget": 540,
+      "seed": 43,
+      "fingerprint": "ec255e00ff23fb9aa09a0e27fc6d78a022aefecc15947c585d5e9e4555d696e9",
+      "base_directory": "models/A",
+      "legacy_continuation": false,
+      "files_sha256": {
+        "scores.joblib": "b5f4929aea69d2e2f361c76d9906f1f542e9fef257ee97f7fc6e4dacb2c8dce6",
+        "concedes.joblib": "a090836dc42efada85d04e8aea6d609aac5d40925ae2be37e06c3fb7d327ff5c",
+        "fit.json": "03fa48be1687a133cb6bdfd1700b35bd1c0f70558401c95f30d4ab1c66c36eb5"
+      }
+    },
+    {
+      "directory": "runs/A/continued_match/b540_s17",
+      "source": "A",
+      "method": "continued_match",
+      "budget": 540,
+      "seed": 17,
+      "fingerprint": "b2a037b600f86c7d51899ee0c1abce3bdcd9ea99a8dd010660c96048f272fdf2",
+      "base_directory": null,
+      "legacy_continuation": false,
+      "files_sha256": {
+        "scores.joblib": "3d51e8c195682e4a102f84ca7f07d46bd38ba63f4b048e97e633e7c39128f249",
+        "concedes.joblib": "7e39c26418de0184620316b676046bce679cb84161b2335105b302204f1b4025",
+        "concedes_fit.json": "51d0a78a8b6f7adfa177a7c97e470b593f1ceb6ca45257fc234b767f06410b00",
+        "fit.json": "fabfa76b9794f329cbf23e0d168964b1953a62381226586fac6f8a81368c3313",
+        "scores_fit.json": "ccb678a2772b7e35e631073e1cb0dccea7e40916a557d589f1c3ab3563eff9a0"
+      }
+    },
+    {
+      "directory": "runs/A/intercept/b540_s17",
+      "source": "A",
+      "method": "intercept",
+      "budget": 540,
+      "seed": 17,
+      "fingerprint": "ec255e00ff23fb9aa09a0e27fc6d78a022aefecc15947c585d5e9e4555d696e9",
+      "base_directory": "models/A",
+      "legacy_continuation": false,
+      "files_sha256": {
+        "scores.joblib": "ec738bceaa419e4118988c2f0862a3010d377b551c620c58dfb196808ec8fb5f",
+        "concedes.joblib": "9f260e8128349676a24b716bb745a869e868c91ac5642b9b25bd0cea951e01d9",
+        "fit.json": "ae38cd7f427ca053b9dcd108b6c7a76dfec494cf1459eb24c4295207dfb11dca"
+      }
+    },
+    {
+      "directory": "runs/A/logistic/b540_s17",
+      "source": "A",
+      "method": "logistic",
+      "budget": 540,
+      "seed": 17,
+      "fingerprint": "ec255e00ff23fb9aa09a0e27fc6d78a022aefecc15947c585d5e9e4555d696e9",
+      "base_directory": "models/A",
+      "legacy_continuation": false,
+      "files_sha256": {
+        "scores.joblib": "2fa2c32e1ce368f78948abfc91205b9e3874b1d48b2cb3253a4fac891e14e6f6",
+        "concedes.joblib": "246017661286a1a0b5168266265c58f351e8b8c5ae950079b0f42004175e5d10",
+        "fit.json": "b33deb67cfac79bfbd89d47a9de3d88c1e8988505a00f5ff7cd2674fbe6a68a4"
+      }
+    },
+    {
+      "directory": "runs/B/beta/b540_s17",
+      "source": "B",
+      "method": "beta",
+      "budget": 540,
+      "seed": 17,
+      "fingerprint": "ec255e00ff23fb9aa09a0e27fc6d78a022aefecc15947c585d5e9e4555d696e9",
+      "base_directory": "models/B",
+      "legacy_continuation": false,
+      "files_sha256": {
+        "scores.joblib": "29eb41832c4e8ed94b6d33c61506d12e3a00a24ec00d51c34b1eea91d745da66",
+        "concedes.joblib": "f59a1a220cc2dd8e76c0ad832b030618ede04d3b3c13dff2c433835beefade98",
+        "fit.json": "6fc276dcff485c2dfcd0a468356df1183aa6b54ba4245fe6444b8bdef676fa2d"
+      }
+    },
+    {
+      "directory": "runs/B/context/b540_s71",
+      "source": "B",
+      "method": "context",
+      "budget": 540,
+      "seed": 71,
+      "fingerprint": "ec255e00ff23fb9aa09a0e27fc6d78a022aefecc15947c585d5e9e4555d696e9",
+      "base_directory": "models/B",
+      "legacy_continuation": false,
+      "files_sha256": {
+        "scores.joblib": "a5345cbf14b5cff543f394c5a640b469ee3c22374417176a4923e6b38a58a974",
+        "concedes.joblib": "7741c3938de1dc24867d92cc2b4bbbdef2b437057030275fa0181a56b0070152",
+        "fit.json": "2d51a901e13550df763feb301281e7c7c857c8a25f2df5004785b0e7d365cb8f"
+      }
+    },
+    {
+      "directory": "runs/B/continued_match/b540_s17",
+      "source": "B",
+      "method": "continued_match",
+      "budget": 540,
+      "seed": 17,
+      "fingerprint": "b2a037b600f86c7d51899ee0c1abce3bdcd9ea99a8dd010660c96048f272fdf2",
+      "base_directory": null,
+      "legacy_continuation": false,
+      "files_sha256": {
+        "scores.joblib": "163b24716c65f0851d87ec065850ba1cb4c94acec61ae823fad67af2e5e16b6b",
+        "concedes.joblib": "9e1c5e1cf5713116825d29d89a5e6b2f8dd369950a4cbfc8e99776fa75ac8b8e",
+        "concedes_fit.json": "61d49f24ab2527d7933a022d3e937baffb928f6f5778c85e6177ed29b4282053",
+        "fit.json": "28c4c29aca2f0a682395563f73c3a4d96574983f7fea2ad1da59c1a81cfc97cd",
+        "scores_fit.json": "fba65ecc280a37fc6e69b8095a90a1a3a7351f951d3113711a39a937769098f7"
+      }
+    },
+    {
+      "directory": "runs/B/intercept/b540_s17",
+      "source": "B",
+      "method": "intercept",
+      "budget": 540,
+      "seed": 17,
+      "fingerprint": "ec255e00ff23fb9aa09a0e27fc6d78a022aefecc15947c585d5e9e4555d696e9",
+      "base_directory": "models/B",
+      "legacy_continuation": false,
+      "files_sha256": {
+        "scores.joblib": "95613a9b74a5417100c533f72cdbf5ae268aed33860e2073fd5c7dd1cb3cf117",
+        "concedes.joblib": "5161cff57d7b2975ddf9aa58445b30b44b75714f5291be5c7b7e9678019c6768",
+        "fit.json": "dd241b1bee8971b5cb55b98ee5b48ec04944eb895ee2a1446b3aac4c002df57b"
+      }
+    },
+    {
+      "directory": "runs/B/logistic/b540_s17",
+      "source": "B",
+      "method": "logistic",
+      "budget": 540,
+      "seed": 17,
+      "fingerprint": "ec255e00ff23fb9aa09a0e27fc6d78a022aefecc15947c585d5e9e4555d696e9",
+      "base_directory": "models/B",
+      "legacy_continuation": false,
+      "files_sha256": {
+        "scores.joblib": "703d3c158b4e1c3a5c20df141ceb9b2b3e74ce81f53672b166ff211ca0295257",
+        "concedes.joblib": "6cc9499eeeaac0bdce784d53ab5cad6d57a7762b2b7a7aca0c3ad7eedead7eef",
+        "fit.json": "3425568f0742b24b826a15512a77d81c7f2cf7984b1c6b57a417adb8abafa043"
+      }
+    },
+    {
+      "directory": "runs/C/beta/b540_s17",
+      "source": "C",
+      "method": "beta",
+      "budget": 540,
+      "seed": 17,
+      "fingerprint": "ec255e00ff23fb9aa09a0e27fc6d78a022aefecc15947c585d5e9e4555d696e9",
+      "base_directory": "models/C",
+      "legacy_continuation": false,
+      "files_sha256": {
+        "scores.joblib": "0588ec2f3fc3796c812733342256c316944ebfc97d1b9d794ad1bc7405db662e",
+        "concedes.joblib": "d10558f0c8a1c29f05440e79bac688eb5d78ce83cb8a139923e072bb11a31579",
+        "fit.json": "b905cd02f0f72e296c4ff82a88b7d66159bb8f16a7dda27da0526cefb2057192"
+      }
+    },
+    {
+      "directory": "runs/C/context/b540_s71",
+      "source": "C",
+      "method": "context",
+      "budget": 540,
+      "seed": 71,
+      "fingerprint": "ec255e00ff23fb9aa09a0e27fc6d78a022aefecc15947c585d5e9e4555d696e9",
+      "base_directory": "models/C",
+      "legacy_continuation": false,
+      "files_sha256": {
+        "scores.joblib": "4c403b34484cdc0678f0f767f4b47ec10ecd2be179a511a5e5b1a4e9e280ff5b",
+        "concedes.joblib": "d5bd417fd70b58767795c018c22b40e0ba2c656661b0db8e75a62f0f6ee17c09",
+        "fit.json": "7ac8c3b40c5fa3fb03d6ff1323f373c2b03fea476099e0806a59eff658c5d37b"
+      }
+    },
+    {
+      "directory": "runs/C/continued_match/b540_s17",
+      "source": "C",
+      "method": "continued_match",
+      "budget": 540,
+      "seed": 17,
+      "fingerprint": "b2a037b600f86c7d51899ee0c1abce3bdcd9ea99a8dd010660c96048f272fdf2",
+      "base_directory": null,
+      "legacy_continuation": false,
+      "files_sha256": {
+        "scores.joblib": "c0c7734187aa0c285d38e559f40e1b7db521fe74caefdeec88b88a01f2588525",
+        "concedes.joblib": "5aeb589f2bda44105b42be1644c6d397a8725eea95f84a6bd3683a45983cff87",
+        "concedes_fit.json": "facffea1756a8ea68296d3d47639e74ff45cf9a2b80e777701422d067ebf89cd",
+        "fit.json": "d9665b248cd0fdf2218e13f2093f88d6742789d75b7f0f377dd6fdadb6d76231",
+        "scores_fit.json": "6f50e3db0dd05414a8af7714efd3dafc41edd368ccb00a624d475725cbf7d51c"
+      }
+    },
+    {
+      "directory": "runs/C/intercept/b540_s17",
+      "source": "C",
+      "method": "intercept",
+      "budget": 540,
+      "seed": 17,
+      "fingerprint": "ec255e00ff23fb9aa09a0e27fc6d78a022aefecc15947c585d5e9e4555d696e9",
+      "base_directory": "models/C",
+      "legacy_continuation": false,
+      "files_sha256": {
+        "scores.joblib": "377917944e4531b7614aab6f6ec1dccd57bcec35c8eff73cc8fb1ec03ab93c72",
+        "concedes.joblib": "b4bcce87c16fd9dcb3665d467217389baff621546f956e0e4a7eebcc6d7619e9",
+        "fit.json": "f2695030bb820d256157085429a851c00b475cccfcead51cfd80c200417c67a6"
+      }
+    },
+    {
+      "directory": "runs/C/logistic/b540_s17",
+      "source": "C",
+      "method": "logistic",
+      "budget": 540,
+      "seed": 17,
+      "fingerprint": "ec255e00ff23fb9aa09a0e27fc6d78a022aefecc15947c585d5e9e4555d696e9",
+      "base_directory": "models/C",
+      "legacy_continuation": false,
+      "files_sha256": {
+        "scores.joblib": "c4c695f5ccf0781953b39e6e1e435c51eb4c8afb5e87e9e174acc8f92a68af24",
+        "concedes.joblib": "44cdd7cd3f14af381dc22e594249f6c47481d0f90907a94d54137f71378f532f",
+        "fit.json": "2b3758467352b24bbeb41e1e66754ae9d4ae72e5f59c293e3a99669b1138c5e0"
+      }
+    }
+  ]
+}

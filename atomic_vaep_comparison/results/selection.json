@@ -1,0 +1,66 @@
+{
+  "models": {
+    "A": "models/A",
+    "C": "models/C",
+    "C_adapter": "runs/C/beta/b540_s17",
+    "C_continued": "runs/C/continued_match/b540_s17",
+    "D": "models/D"
+  },
+  "main_models": [
+    "D",
+    "C_adapter"
+  ],
+  "main_pairs": [
+    [
+      "C_adapter",
+      "D"
+    ]
+  ],
+  "context_pairs": [
+    [
+      "C",
+      "D"
+    ],
+    [
+      "C_adapter",
+      "C"
+    ]
+  ],
+  "adapter_method": "beta",
+  "female_budget": 540,
+  "seed_by_model": {
+    "A": 42,
+    "C": 42,
+    "C_adapter": 17,
+    "C_continued": 17,
+    "D": 42
+  },
+  "posthoc_test_selection": true,
+  "independent_validation": false,
+  "selection_rule": "At default 540 games, Beta has the lowest four-run mean test loss for both targets. Per setup, retain the shared seed minimizing mean absolute relative distance to the four-seed target means; ties use smaller seed.",
+  "min_actions": 100,
+  "min_minutes": 45,
+  "top_k": 15,
+  "ranking_diagnostic_top_k": 10,
+  "rank_ties": "min; retain boundary ties in Top 15",
+  "small_positions": "exclude groups with fewer than 15 eligible players",
+  "reference_notebook": "enriched_atomic_vaep_features_competition_events.ipynb",
+  "reference_sections": "4.1 through 8.2",
+  "action_distribution_range": [
+    -0.01,
+    0.01
+  ],
+  "spatial_types": [
+    "shot",
+    "pass",
+    "receival",
+    "dribble",
+    "cross",
+    "take_on"
+  ],
+  "spatial_minimum": {
+    "shot": 10,
+    "other": 20
+  },
+  "spatial_color_quantile": 0.98
+}

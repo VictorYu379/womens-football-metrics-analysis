@@ -1,0 +1,8 @@
+position_bucket,players,included,top_k,min_possible_overlap_pct
+Fullback / Wing Back,224,True,15,0.0
+Center Back,211,True,15,0.0
+Defensive Midfield,168,True,15,0.0
+Wide Midfielder / Winger,163,True,15,0.0
+Forward,147,True,15,0.0
+Central Midfield,83,True,15,0.0
+Attacking Midfield,63,True,15,0.0

@@ -1,0 +1,148 @@
+position_bucket,measure,rank_delta,count,players,outside_display
+Attacking Midfield,total,-10,0,63,2
+Attacking Midfield,total,-9,0,63,2
+Attacking Midfield,total,-8,1,63,2
+Attacking Midfield,total,-7,2,63,2
+Attacking Midfield,total,-6,3,63,2
+Attacking Midfield,total,-5,3,63,2
+Attacking Midfield,total,-4,2,63,2
+Attacking Midfield,total,-3,4,63,2
+Attacking Midfield,total,-2,3,63,2
+Attacking Midfield,total,-1,5,63,2
+Attacking Midfield,total,0,7,63,2
+Attacking Midfield,total,1,10,63,2
+Attacking Midfield,total,2,7,63,2
+Attacking Midfield,total,3,6,63,2
+Attacking Midfield,total,4,3,63,2
+Attacking Midfield,total,5,2,63,2
+Attacking Midfield,total,6,1,63,2
+Attacking Midfield,total,7,1,63,2
+Attacking Midfield,total,8,0,63,2
+Attacking Midfield,total,9,1,63,2
+Attacking Midfield,total,10,0,63,2
+Center Back,total,-10,8,211,89
+Center Back,total,-9,2,211,89
+Center Back,total,-8,5,211,89
+Center Back,total,-7,4,211,89
+Center Back,total,-6,9,211,89
+Center Back,total,-5,3,211,89
+Center Back,total,-4,8,211,89
+Center Back,total,-3,6,211,89
+Center Back,total,-2,4,211,89
+Center Back,total,-1,6,211,89
+Center Back,total,0,14,211,89
+Center Back,total,1,8,211,89
+Center Back,total,2,6,211,89
+Center Back,total,3,8,211,89
+Center Back,total,4,5,211,89
+Center Back,total,5,3,211,89
+Center Back,total,6,1,211,89
+Center Back,total,7,3,211,89
+Center Back,total,8,10,211,89
+Center Back,total,9,5,211,89
+Center Back,total,10,4,211,89
+Central Midfield,total,-10,1,83,4
+Central Midfield,total,-9,0,83,4
+Central Midfield,total,-8,0,83,4
+Central Midfield,total,-7,1,83,4
+Central Midfield,total,-6,4,83,4
+Central Midfield,total,-5,2,83,4
+Central Midfield,total,-4,1,83,4
+Central Midfield,total,-3,3,83,4
+Central Midfield,total,-2,12,83,4
+Central Midfield,total,-1,10,83,4
+Central Midfield,total,0,6,83,4
+Central Midfield,total,1,10,83,4
+Central Midfield,total,2,8,83,4
+Central Midfield,total,3,7,83,4
+Central Midfield,total,4,6,83,4
+Central Midfield,total,5,3,83,4
+Central Midfield,total,6,2,83,4
+Central Midfield,total,7,2,83,4
+Central Midfield,total,8,0,83,4
+Central Midfield,total,9,0,83,4
+Central Midfield,total,10,1,83,4
+Defensive Midfield,total,-10,1,168,48
+Defensive Midfield,total,-9,5,168,48
+Defensive Midfield,total,-8,1,168,48
+Defensive Midfield,total,-7,3,168,48
+Defensive Midfield,total,-6,5,168,48
+Defensive Midfield,total,-5,3,168,48
+Defensive Midfield,total,-4,11,168,48
+Defensive Midfield,total,-3,9,168,48
+Defensive Midfield,total,-2,8,168,48
+Defensive Midfield,total,-1,7,168,48
+Defensive Midfield,total,0,11,168,48
+Defensive Midfield,total,1,5,168,48
+Defensive Midfield,total,2,7,168,48
+Defensive Midfield,total,3,8,168,48
+Defensive Midfield,total,4,11,168,48
+Defensive Midfield,total,5,5,168,48
+Defensive Midfield,total,6,4,168,48
+Defensive Midfield,total,7,9,168,48
+Defensive Midfield,total,8,3,168,48
+Defensive Midfield,total,9,2,168,48
+Defensive Midfield,total,10,2,168,48
+Forward,total,-10,4,147,12
+Forward,total,-9,0,147,12
+Forward,total,-8,2,147,12
+Forward,total,-7,5,147,12
+Forward,total,-6,7,147,12
+Forward,total,-5,7,147,12
+Forward,total,-4,7,147,12
+Forward,total,-3,7,147,12
+Forward,total,-2,11,147,12
+Forward,total,-1,10,147,12
+Forward,total,0,14,147,12
+Forward,total,1,13,147,12
+Forward,total,2,12,147,12
+Forward,total,3,5,147,12
+Forward,total,4,12,147,12
+Forward,total,5,5,147,12
+Forward,total,6,2,147,12
+Forward,total,7,5,147,12
+Forward,total,8,2,147,12
+Forward,total,9,5,147,12
+Forward,total,10,0,147,12
+Fullback / Wing Back,total,-10,5,224,91
+Fullback / Wing Back,total,-9,2,224,91
+Fullback / Wing Back,total,-8,1,224,91
+Fullback / Wing Back,total,-7,11,224,91
+Fullback / Wing Back,total,-6,6,224,91
+Fullback / Wing Back,total,-5,5,224,91
+Fullback / Wing Back,total,-4,7,224,91
+Fullback / Wing Back,total,-3,10,224,91
+Fullback / Wing Back,total,-2,7,224,91
+Fullback / Wing Back,total,-1,12,224,91
+Fullback / Wing Back,total,0,11,224,91
+Fullback / Wing Back,total,1,6,224,91
+Fullback / Wing Back,total,2,9,224,91
+Fullback / Wing Back,total,3,6,224,91
+Fullback / Wing Back,total,4,4,224,91
+Fullback / Wing Back,total,5,10,224,91
+Fullback / Wing Back,total,6,5,224,91
+Fullback / Wing Back,total,7,3,224,91
+Fullback / Wing Back,total,8,1,224,91
+Fullback / Wing Back,total,9,8,224,91
+Fullback / Wing Back,total,10,4,224,91
+Wide Midfielder / Winger,total,-10,4,163,24
+Wide Midfielder / Winger,total,-9,1,163,24
+Wide Midfielder / Winger,total,-8,3,163,24
+Wide Midfielder / Winger,total,-7,6,163,24
+Wide Midfielder / Winger,total,-6,8,163,24
+Wide Midfielder / Winger,total,-5,4,163,24
+Wide Midfielder / Winger,total,-4,8,163,24
+Wide Midfielder / Winger,total,-3,10,163,24
+Wide Midfielder / Winger,total,-2,14,163,24
+Wide Midfielder / Winger,total,-1,11,163,24
+Wide Midfielder / Winger,total,0,10,163,24
+Wide Midfielder / Winger,total,1,15,163,24
+Wide Midfielder / Winger,total,2,8,163,24
+Wide Midfielder / Winger,total,3,9,163,24
+Wide Midfielder / Winger,total,4,7,163,24
+Wide Midfielder / Winger,total,5,3,163,24
+Wide Midfielder / Winger,total,6,3,163,24
+Wide Midfielder / Winger,total,7,5,163,24
+Wide Midfielder / Winger,total,8,3,163,24
+Wide Midfielder / Winger,total,9,3,163,24
+Wide Midfielder / Winger,total,10,4,163,24

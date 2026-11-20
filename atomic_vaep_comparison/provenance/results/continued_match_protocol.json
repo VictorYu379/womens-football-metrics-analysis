@@ -1,0 +1,76 @@
+{
+  "method": "continued_match",
+  "base_fingerprint": "ec255e00ff23fb9aa09a0e27fc6d78a022aefecc15947c585d5e9e4555d696e9",
+  "manifest_sha256": "f53be8c55a8e44ff6d108c446a5c5770e7c1d9070ec28b4271f0eb40ea7dc3cd",
+  "source_sha256": {
+    "A": {
+      "scores": "b836153c3a20cd44604bba7eb369959dab8ceea663df51d98afd4018163f34df",
+      "concedes": "c4f7b7a78a0b45cb285dff16b2768d96adad70a301f6652812d7be2f3f033c86"
+    },
+    "B": {
+      "scores": "dacb28b95fb26837168c9c362dbc12bd082c3c5443fef88f6bb22a0ee76e96c1",
+      "concedes": "4008bd2f3785f1e6f8f28a0a18daf6e06986019261f84b9e7e193027f4b45479"
+    },
+    "C": {
+      "scores": "3bd300068da10d69a0898926da3e14ababc7a3e54665bd24dc8cb8e9c420b18b",
+      "concedes": "b1bf239031a6b207c35fc13db5573cd06b97e1a32e62266ab847a9e0f112c4cf"
+    }
+  },
+  "budgets": [
+    50,
+    100,
+    150,
+    200,
+    250,
+    300,
+    350,
+    400,
+    450,
+    500,
+    540
+  ],
+  "seeds": [
+    17,
+    29,
+    43,
+    71
+  ],
+  "threads": 6,
+  "parameters": {
+    "scores": {
+      "learning_rate": 0.016,
+      "max_leaf_nodes": 127,
+      "min_samples_leaf": 35,
+      "max_iter": 800,
+      "l2_regularization": 0.75,
+      "random_state": 42,
+      "early_stopping": "auto",
+      "validation_fraction": 0.1,
+      "n_iter_no_change": 10,
+      "tol": 1e-07
+    },
+    "concedes": {
+      "learning_rate": 0.01,
+      "max_leaf_nodes": 63,
+      "min_samples_leaf": 50,
+      "max_iter": 1200,
+      "l2_regularization": 0.75,
+      "random_state": 42,
+      "early_stopping": "auto",
+      "validation_fraction": 0.1,
+      "n_iter_no_change": 10,
+      "tol": 1e-07
+    }
+  },
+  "validation": "10% whole matches; inherited internal RNG seed; original within-side row order",
+  "stopping": "Original early stopping and iteration caps; no best-checkpoint rollback",
+  "code_sha256": {
+    "hgb.py": "1503ab116c1a9508bf4c8547a579701fa365836028af22665a4a5774aaa4bf5b",
+    "data.py": "935c33bbaf421fc030a344f0b7a5b3cd0c26e41741edf66df1cf8c1d5a0adc25",
+    "config.py": "0b52263effefbc8f8b1333297957fd38c3bf1c8b7660ea0e3a3e62b344918680",
+    "models.py": "fa2ee917e438635be2644a35f361da3edbf9b26789c21f6280fc2e19063192cb",
+    "storage.py": "f158899bfb743080c90bcdba3c51234db13903fbf6fb70aac36e9d7f18ab12bb"
+  },
+  "notebook_code_sha256": "968ae60328a16b161ff84343a67f5af49883e7834c9724972b2f8f316f020c54",
+  "fingerprint": "b2a037b600f86c7d51899ee0c1abce3bdcd9ea99a8dd010660c96048f272fdf2"
+}

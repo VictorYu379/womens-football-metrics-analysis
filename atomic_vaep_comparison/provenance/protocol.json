@@ -1,0 +1,136 @@
+{
+  "design": {
+    "version": 2,
+    "source_rows": {
+      "A": 1586819,
+      "B": 3085260,
+      "C": 4583701
+    },
+    "women_reference_games": 540,
+    "execution": "manual notebook; train all models here without importing earlier results",
+    "budgets": [
+      50,
+      100,
+      150,
+      200,
+      250,
+      300,
+      350,
+      400,
+      450,
+      500,
+      540
+    ],
+    "sample_seeds": [
+      17,
+      29,
+      43,
+      71
+    ],
+    "hgb_parameters": {
+      "scores": {
+        "learning_rate": 0.016,
+        "max_leaf_nodes": 127,
+        "min_samples_leaf": 35,
+        "max_iter": 800,
+        "l2_regularization": 0.75,
+        "random_state": 42,
+        "early_stopping": "auto",
+        "validation_fraction": 0.1,
+        "n_iter_no_change": 10,
+        "tol": 1e-07
+      },
+      "concedes": {
+        "learning_rate": 0.01,
+        "max_leaf_nodes": 63,
+        "min_samples_leaf": 50,
+        "max_iter": 1200,
+        "l2_regularization": 0.75,
+        "random_state": 42,
+        "early_stopping": "auto",
+        "validation_fraction": 0.1,
+        "n_iter_no_change": 10,
+        "tol": 1e-07
+      }
+    },
+    "adapters": [
+      "intercept",
+      "logistic",
+      "beta",
+      "context"
+    ],
+    "context_groups": [
+      "pass",
+      "receival",
+      "interception",
+      "dribble",
+      "clearance",
+      "tackle"
+    ],
+    "context_penalties": [
+      0.0,
+      1e-05,
+      0.0001,
+      0.001,
+      0.01,
+      0.1
+    ],
+    "threads": 6,
+    "male_sampling": "sorted prefixes of RandomState(42).permutation; A subset B subset C",
+    "women_sampling": "nested default_rng(seed) permutations of development games",
+    "full_budget": "four runs use the same 540 games; model seed remains 42",
+    "continuation": "keep source trees; append up to 800/1200 target trees",
+    "validation": "HGB: native 10% stratified action split; context: 20% match split, then refit all"
+  },
+  "data_sha256": "f53be8c55a8e44ff6d108c446a5c5770e7c1d9070ec28b4271f0eb40ea7dc3cd",
+  "input_sha256": {
+    "women": "79bc4a1082c1dc22976ef1148774deba36fde665b316b66947b94418c8a9d08a",
+    "men": "aae2fb3b9caf5d7d88835de4fac0dacf5f72f0b1d83ec432e6745f555ff4f4bd"
+  },
+  "python": "3.13.3",
+  "packages": {
+    "numpy": "2.5.3",
+    "pandas": "3.0.5",
+    "scipy": "1.18.1",
+    "scikit-learn": "1.9.0",
+    "pyarrow": "25.0.1",
+    "joblib": "1.6.0"
+  },
+  "code_sha256": {
+    "config.py": "0b52263effefbc8f8b1333297957fd38c3bf1c8b7660ea0e3a3e62b344918680",
+    "data.py": "29e6d882ef6bb6f69f32a74198a6de8efc40335ef0ae0859b096a623955c0a4a",
+    "hgb.py": "1f03df7969285c64d31250e327cd6cfc4bff4258779709a9d45aabbf6d19c7ee",
+    "adapters.py": "2352e6b47b5fd9ea9ae8d7c115211b8e573158249bb4af0ee2b3f60409f6f63a",
+    "models.py": "fa2ee917e438635be2644a35f361da3edbf9b26789c21f6280fc2e19063192cb",
+    "storage.py": "f158899bfb743080c90bcdba3c51234db13903fbf6fb70aac36e9d7f18ab12bb"
+  },
+  "notebook_code_sha256": "f37fc9eacf52f066fb94820473cfb8d3c75456c788d5d38088d020a4c55c4653",
+  "fingerprint": "ec255e00ff23fb9aa09a0e27fc6d78a022aefecc15947c585d5e9e4555d696e9",
+  "reporting_updates": [
+    {
+      "date": "2026-11-20",
+      "reason": "Merge persisted metrics when resuming one stage; training, prediction and evaluation are unchanged.",
+      "fingerprint": "2725f10beb953524ea7c3546828049dc3fbacfd96c1e0ffa94a8d0dd66a6c31f",
+      "code_sha256": {
+        "data.py": "b48f3fae92d9f8fb06dcd28aeca73e76b3c89f2344973ea6b7ccea41000f4f57"
+      },
+      "notebook_code_sha256": "3759a181ba0cb6eef03023f2b2e3c87ceba0a72e464a2de57c8d4b4efe40dc4d"
+    }
+  ],
+  "compatible_extensions": [
+    {
+      "fingerprint": "2c6f33ff4897535d14b358f96e9f8b1421d17c5288f5bed3c93e9ad62277c041",
+      "reason": "Optional explicit HGB splitter; default row-validation execution is unchanged. New whole-match runs use a separate protocol and output namespace.",
+      "validation": "46 unit/integration tests passed, including unchanged default predictions, agreement with the audited split, independent outputs and interruption recovery.",
+      "code_sha256": {
+        "config.py": "0b52263effefbc8f8b1333297957fd38c3bf1c8b7660ea0e3a3e62b344918680",
+        "data.py": "935c33bbaf421fc030a344f0b7a5b3cd0c26e41741edf66df1cf8c1d5a0adc25",
+        "hgb.py": "1503ab116c1a9508bf4c8547a579701fa365836028af22665a4a5774aaa4bf5b",
+        "adapters.py": "2352e6b47b5fd9ea9ae8d7c115211b8e573158249bb4af0ee2b3f60409f6f63a",
+        "models.py": "fa2ee917e438635be2644a35f361da3edbf9b26789c21f6280fc2e19063192cb",
+        "storage.py": "f158899bfb743080c90bcdba3c51234db13903fbf6fb70aac36e9d7f18ab12bb"
+      },
+      "notebook_code_sha256": "3759a181ba0cb6eef03023f2b2e3c87ceba0a72e464a2de57c8d4b4efe40dc4d"
+    }
+  ]
+}

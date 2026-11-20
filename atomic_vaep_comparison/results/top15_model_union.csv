@@ -1,0 +1,238 @@
+player_id,player_name,position_bucket,test_minutes,action_count,left_value,right_value,left_rank,right_rank,rank_delta,left_in_top,right_in_top,best_rank,measure,left,right
+128663,Cristina Librán,Attacking Midfield,853.171416667,1322.0,4.630114362155469,4.312795284697357,1.0,4.0,-3.0,True,True,1.0,total,C_adapter,D
+5096,Savannah McCaskill,Attacking Midfield,738.219683333,1241.0,4.55847769220627,4.6755331975859855,2.0,1.0,1.0,True,True,1.0,total,C_adapter,D
+10220,Kosovare Asllani,Attacking Midfield,313.87035,489.0,4.281732759987087,4.540069338564892,3.0,2.0,1.0,True,True,2.0,total,C_adapter,D
+10108,Pernille Mosegaard Harder,Attacking Midfield,422.706,619.0,4.265142226586205,4.462196475077629,4.0,3.0,1.0,True,True,3.0,total,C_adapter,D
+47022,Laura Freigang,Attacking Midfield,539.504783333,657.0,4.015800037870368,3.2189399742314997,5.0,12.0,-7.0,True,True,5.0,total,C_adapter,D
+32460,Karólína Lea Vilhjálmsdóttir,Attacking Midfield,590.039133333,778.0,3.799734812816078,3.8738459129514204,7.0,5.0,2.0,True,True,5.0,total,C_adapter,D
+24396,Jovana Damnjanović,Attacking Midfield,218.611583333,280.0,3.947436236500634,3.6367128087025353,6.0,8.0,-2.0,True,True,6.0,total,C_adapter,D
+15227,Verónica Boquete Giadáns,Attacking Midfield,720.5091,1024.0,3.5508288069563756,3.807542070564208,9.0,6.0,3.0,True,True,6.0,total,C_adapter,D
+321538,Natasha Kowalski,Attacking Midfield,646.7911,689.0,2.912870193330952,3.771697327428055,14.0,7.0,7.0,True,True,7.0,total,C_adapter,D
+409186,Laura Requena Sánchez,Attacking Midfield,865.825466667,1151.0,3.7608619160196337,3.4561936924585703,8.0,9.0,-1.0,True,True,8.0,total,C_adapter,D
+5044,Débora Cristiane de Oliveira,Attacking Midfield,513.197416667,579.0,3.221030454079986,3.2335037141707903,10.0,11.0,-1.0,True,True,10.0,total,C_adapter,D
+10259,Lina Magull,Attacking Midfield,366.93455,661.0,3.1068739679023434,3.446534488955676,11.0,10.0,1.0,True,True,10.0,total,C_adapter,D
+31629,Anissa Lahmari,Attacking Midfield,459.429433333,601.0,2.9769000941079256,2.885419652790917,12.0,14.0,-2.0,True,True,12.0,total,C_adapter,D
+4638,Drew Spence,Attacking Midfield,298.676883333,485.0,2.9318489538368278,2.619194808064894,13.0,17.0,-4.0,True,False,13.0,total,C_adapter,D
+46872,Sandra Starke,Attacking Midfield,1099.982666667,1322.0,2.687034130674431,2.9711044695057622,16.0,13.0,3.0,False,True,13.0,total,C_adapter,D
+31534,Ella Toone,Attacking Midfield,530.2212,836.0,2.760484280005498,2.3230270608116177,15.0,21.0,-6.0,True,False,15.0,total,C_adapter,D
+135256,Sharon Beck,Attacking Midfield,683.5645,887.0,2.6413681790858057,2.789449041471239,18.0,15.0,3.0,False,True,15.0,total,C_adapter,D
+50168,Laia Balleste,Center Back,1150.014216667,1163.0,4.97822360636971,4.7586212860415635,1.0,1.0,0.0,True,True,1.0,total,C_adapter,D
+50112,Eva Llamas Hernández,Center Back,1113.982083333,1274.0,3.9098099331194542,3.858221684933644,2.0,2.0,0.0,True,True,2.0,total,C_adapter,D
+25491,Marina Hegering,Center Back,432.07235,1337.0,3.6290047314347675,3.353893657860028,3.0,5.0,-2.0,True,True,3.0,total,C_adapter,D
+32701,Caroline Pleidrup Gram,Center Back,1057.906533333,1570.0,3.5085995237241034,3.5015887515881454,6.0,3.0,3.0,True,True,3.0,total,C_adapter,D
+46891,Samantha Steuerwald,Center Back,844.284116667,1112.0,3.6112233302635444,3.1815009165299735,4.0,8.0,-4.0,True,True,4.0,total,C_adapter,D
+46881,Janina Minge,Center Back,855.272216667,1514.0,3.3667578287601687,3.4915100199743456,7.0,4.0,3.0,True,True,4.0,total,C_adapter,D
+49045,Victoria Krug,Center Back,963.094266667,1396.0,3.5822152164079526,3.2020662750441744,5.0,6.0,-1.0,True,True,5.0,total,C_adapter,D
+10208,Elena Linari,Center Back,631.640016667,1770.0,2.997815672048481,3.1927853284703045,8.0,7.0,1.0,True,True,7.0,total,C_adapter,D
+49840,Claudia Florentino Vivó,Center Back,692.992066667,1198.0,2.900874129791174,2.8558782402443343,9.0,9.0,0.0,True,True,9.0,total,C_adapter,D
+10252,Alex Greenwood,Center Back,705.52245,2144.0,2.81530611678349,2.781444776251927,10.0,10.0,0.0,True,True,10.0,total,C_adapter,D
+22337,Maya Le Tissier,Center Back,603.981666667,1505.0,2.7276920999104317,2.1103588138402505,11.0,31.0,-20.0,True,False,11.0,total,C_adapter,D
+309392,Giulia Rizzon,Center Back,1040.113666667,1205.0,2.576933700450077,2.6087419814198105,14.0,11.0,3.0,True,True,11.0,total,C_adapter,D
+25634,Aldana Cometti,Center Back,734.46825,1332.0,2.700545967130372,2.4915355671152213,12.0,14.0,-2.0,True,True,12.0,total,C_adapter,D
+226036,Nahia Aparicio,Center Back,789.96345,1845.0,2.5702077267522494,2.505762641874883,16.0,12.0,4.0,False,True,12.0,total,C_adapter,D
+50000,Maria Estella del Valle,Center Back,626.2521,789.0,2.675032515157856,2.113392813556243,13.0,30.0,-17.0,True,False,13.0,total,C_adapter,D
+45631,Elena Pisani,Center Back,587.736233333,605.0,1.8138304381253512,2.5042770840665063,51.0,13.0,38.0,False,True,13.0,total,C_adapter,D
+86279,Jimena López Fuentes,Center Back,586.289,959.0,2.5768674065052997,2.399739335960044,15.0,18.0,-3.0,True,False,15.0,total,C_adapter,D
+31157,Hawa Cissoko,Center Back,496.071833333,569.0,2.5272755431664256,2.460428416761969,17.0,15.0,2.0,False,True,15.0,total,C_adapter,D
+81477,Claudia Iglesias de la Cruz,Central Midfield,1222.612616667,1520.0,7.035492881753454,6.9505084627910945,1.0,2.0,-1.0,True,True,1.0,total,C_adapter,D
+10228,Manuela Giugliano,Central Midfield,611.654866667,962.0,7.00594375099237,7.52429062449378,2.0,1.0,1.0,True,True,1.0,total,C_adapter,D
+15288,Gema Gili Giner,Central Midfield,810.417816667,1038.0,4.763730350218258,4.799350770977692,3.0,3.0,0.0,True,True,3.0,total,C_adapter,D
+123476,Yazmeen Ryan,Central Midfield,819.657633333,1311.0,4.285923987605752,4.571499508156958,4.0,4.0,0.0,True,True,4.0,total,C_adapter,D
+19498,Jessica Park,Central Midfield,512.552966667,803.0,4.04851804094606,3.014961789773066,5.0,12.0,-7.0,True,True,5.0,total,C_adapter,D
+10242,Laura Feiersinger,Central Midfield,341.79795,565.0,3.2869393348965614,3.407732529582658,8.0,5.0,3.0,True,True,5.0,total,C_adapter,D
+15284,Aitana Bonmati Conca,Central Midfield,209.15985,493.0,3.704032454210227,3.291283874586138,6.0,8.0,-2.0,True,True,6.0,total,C_adapter,D
+350013,Eva Schatzer,Central Midfield,788.871166667,889.0,3.6021647209576506,3.3534512941279946,7.0,6.0,1.0,True,True,6.0,total,C_adapter,D
+136429,Miku Kojima,Central Midfield,557.067,687.0,3.0136459404387983,3.2995951703942814,11.0,7.0,4.0,True,True,7.0,total,C_adapter,D
+43046,Barbara Dunst,Central Midfield,553.7976,1111.0,3.1241035451541435,3.0768679426829695,9.0,11.0,-2.0,True,True,9.0,total,C_adapter,D
+322359,Ceri Holland,Central Midfield,478.52345,564.0,3.1187405696642476,3.2253517769612876,10.0,9.0,1.0,True,True,9.0,total,C_adapter,D
+10143,Alexia Putellas Segura,Central Midfield,201.93,525.0,2.841397214501125,3.1355216004081,14.0,10.0,4.0,True,True,10.0,total,C_adapter,D
+402663,Ghizlane Chebbak,Central Midfield,629.709466667,635.0,2.989973995017466,2.89907508566549,12.0,13.0,-1.0,True,True,12.0,total,C_adapter,D
+26520,Yuka Momiki,Central Midfield,453.698816667,694.0,2.9269108394344006,2.4733438355932176,13.0,19.0,-6.0,True,False,13.0,total,C_adapter,D
+24237,Missy Bo Kearns,Central Midfield,303.315833333,389.0,2.600467868591205,2.7258837100337736,17.0,14.0,3.0,False,True,14.0,total,C_adapter,D
+361730,Thaís Cristina da Silva Ferreira,Central Midfield,812.959266667,905.0,2.808193519805954,2.443931985893892,15.0,21.0,-6.0,True,False,15.0,total,C_adapter,D
+135780,Victoria López,Central Midfield,343.507933333,601.0,2.52542791442684,2.7024529744318,19.0,15.0,4.0,False,True,15.0,total,C_adapter,D
+25693,Karen Araya,Defensive Midfield,992.798466667,1786.0,7.012257390593737,7.3101440496153165,1.0,1.0,0.0,True,True,1.0,total,C_adapter,D
+34497,Julia Karlenäs,Defensive Midfield,819.470983333,1062.0,4.745262701175797,5.054367302779473,2.0,2.0,0.0,True,True,2.0,total,C_adapter,D
+408715,Pamela Cinthia González Medina,Defensive Midfield,841.238,1132.0,4.198205177621267,4.011938643519276,3.0,3.0,0.0,True,True,3.0,total,C_adapter,D
+102587,Mariana Cerro,Defensive Midfield,530.469066667,846.0,3.5463827784275894,3.499221508767703,4.0,5.0,-1.0,True,True,4.0,total,C_adapter,D
+50156,Claudia  Zornoza Sánchez,Defensive Midfield,413.92455,1027.0,3.104189975464879,3.4999914545593063,11.0,4.0,7.0,True,True,4.0,total,C_adapter,D
+15257,Saki Kumagai,Defensive Midfield,636.39245,1173.0,3.417753467768681,3.4362442743229713,5.0,7.0,-2.0,True,True,5.0,total,C_adapter,D
+10275,Sofie Junge Pedersen,Defensive Midfield,383.8132,871.0,3.3122026883046845,3.2263892262357508,6.0,10.0,-4.0,True,True,6.0,total,C_adapter,D
+50105,Ana González Rosa,Defensive Midfield,858.760366667,1710.0,3.232344709880424,3.4547542171353745,9.0,6.0,3.0,True,True,6.0,total,C_adapter,D
+142137,María de los Ángeles Carrión Egido,Defensive Midfield,652.72765,971.0,3.2984674607606137,3.2777781557140915,7.0,8.0,-1.0,True,True,7.0,total,C_adapter,D
+49695,Emma Severini,Defensive Midfield,831.488983333,1472.0,3.233953272648152,3.077199941728708,8.0,11.0,-3.0,True,True,8.0,total,C_adapter,D
+53187,Sandra Castelló Oliver,Defensive Midfield,1139.404133333,1240.0,3.2205962152565353,3.2714039173702227,10.0,9.0,1.0,True,True,9.0,total,C_adapter,D
+25466,Vilde Bøe Risa,Defensive Midfield,734.172816667,1473.0,3.045286061340605,2.83925919129964,12.0,15.0,-3.0,True,True,12.0,total,C_adapter,D
+25450,Young-Ju Lee,Defensive Midfield,616.443383333,1326.0,2.5500565877126804,3.061461771034605,17.0,12.0,5.0,False,True,12.0,total,C_adapter,D
+4643,Georgia Stanway,Defensive Midfield,566.044283333,1475.0,2.979645361553687,2.7983749705990975,13.0,16.0,-3.0,True,False,13.0,total,C_adapter,D
+131645,Julia Angela Grosso,Defensive Midfield,468.00465,872.0,2.782030225039335,2.987091782403071,15.0,13.0,2.0,True,True,13.0,total,C_adapter,D
+386105,Lisa Fjeldstad Naalsund,Defensive Midfield,411.972883333,582.0,2.8882371849434727,2.494392657170453,14.0,20.0,-6.0,True,False,14.0,total,C_adapter,D
+50098,Rosa Márquez Baena,Defensive Midfield,811.9138,1353.0,2.3440791400779006,2.8570913226186225,19.0,14.0,5.0,False,True,14.0,total,C_adapter,D
+49998,Cristina Martín-Prieto Gutierrez,Forward,1187.209283333,858.0,10.223357916468835,9.713512549254178,1.0,1.0,0.0,True,True,1.0,total,C_adapter,D
+25554,Khadija Monifa Shaw,Forward,385.938033333,366.0,7.780192054525304,7.503398857472148,2.0,2.0,0.0,True,True,2.0,total,C_adapter,D
+63424,Nikola Karczewska,Forward,492.870516667,498.0,7.107852140933187,6.691590915122047,3.0,5.0,-2.0,True,True,3.0,total,C_adapter,D
+45294,Giovana Queiroz Costa,Forward,455.708016667,531.0,7.095213738060878,7.181016918039174,4.0,3.0,1.0,True,True,3.0,total,C_adapter,D
+25541,Valentina Giacinti,Forward,434.471166667,429.0,6.816334647905691,7.04397496469434,5.0,4.0,1.0,True,True,4.0,total,C_adapter,D
+321541,Ramona Maier,Forward,659.600466667,585.0,6.3939263864446225,5.664788408072887,6.0,7.0,-1.0,True,True,6.0,total,C_adapter,D
+32854,Racheal Kundananji,Forward,383.395983333,483.0,6.186335582178937,6.554153274417903,7.0,6.0,1.0,True,True,6.0,total,C_adapter,D
+45896,Michela Cambiaghi,Forward,594.38145,665.0,6.1754039250637955,5.042756162445409,8.0,12.0,-4.0,True,True,8.0,total,C_adapter,D
+41950,Evelyne Viens,Forward,742.0541,772.0,5.679005680897051,5.505326168194462,9.0,8.0,1.0,True,True,8.0,total,C_adapter,D
+46549,Nicole Anyomi,Forward,442.662333333,461.0,5.0779138995691,5.240966798992105,11.0,9.0,2.0,True,True,9.0,total,C_adapter,D
+135571,Chiara Beccari,Forward,579.781866667,678.0,5.090428685338899,5.183078110416273,10.0,10.0,0.0,True,True,10.0,total,C_adapter,D
+53185,Fatoumata Kanteh Cham,Forward,1083.807133333,842.0,4.771532668514393,5.182042436265533,13.0,11.0,2.0,True,True,11.0,total,C_adapter,D
+325210,Ivonne Chacón,Forward,345.256933333,351.0,4.7900290287124125,4.935177948407602,12.0,14.0,-2.0,True,True,12.0,total,C_adapter,D
+10176,Lana Clelland,Forward,634.0439,852.0,4.6249990505503655,4.941433032457644,15.0,13.0,2.0,True,True,13.0,total,C_adapter,D
+25476,Lea Schüller,Forward,413.408066667,396.0,4.694866573415284,4.824917123766609,14.0,15.0,-1.0,True,True,14.0,total,C_adapter,D
+53958,Allegra Poljak,Fullback / Wing Back,992.345566667,1141.0,4.881878614033887,4.823472797929607,1.0,1.0,0.0,True,True,1.0,total,C_adapter,D
+408656,Eider Arana Mugueta,Fullback / Wing Back,727.9464,773.0,4.302753102535949,3.9476610050106347,2.0,3.0,-1.0,True,True,2.0,total,C_adapter,D
+84730,Anna Gerhardt,Fullback / Wing Back,779.733033333,1073.0,4.162748232878575,4.422735731064039,3.0,2.0,1.0,True,True,2.0,total,C_adapter,D
+4848,Ashleigh Neville,Fullback / Wing Back,772.192883333,1086.0,4.070621719137958,3.800346908845158,4.0,5.0,-1.0,True,True,4.0,total,C_adapter,D
+46224,Lucia Di Guglielmo,Fullback / Wing Back,392.993133333,770.0,3.9974910320758203,3.946913228957693,5.0,4.0,1.0,True,True,4.0,total,C_adapter,D
+79565,Emma Ramírez Gorgoso,Fullback / Wing Back,656.84175,1321.0,3.6981340818712014,3.55481639156266,6.0,9.0,-3.0,True,True,6.0,total,C_adapter,D
+321803,Raquel Morcillo Aparicio,Fullback / Wing Back,1171.3021,1584.0,3.4172789494859965,3.771658973774288,11.0,6.0,5.0,True,True,6.0,total,C_adapter,D
+10148,Marta Torrejón Moya,Fullback / Wing Back,502.31305,1229.0,3.6789297274601815,3.630175219680791,7.0,7.0,0.0,True,True,7.0,total,C_adapter,D
+323764,Raiderlin Nazareth Carrasco Vargas,Fullback / Wing Back,952.997066667,1145.0,3.4944447617196697,3.3836002909584684,8.0,11.0,-3.0,True,True,8.0,total,C_adapter,D
+50001,Itziar Pinillos Moreno,Fullback / Wing Back,810.998,1428.0,3.487934021575685,3.590672740206802,9.0,8.0,1.0,True,True,8.0,total,C_adapter,D
+325077,Paula Flach,Fullback / Wing Back,833.292316667,1107.0,3.4519971622327397,3.527397426476853,10.0,10.0,0.0,True,True,10.0,total,C_adapter,D
+46550,Lena Ostermeier,Fullback / Wing Back,650.0587,968.0,3.412123871274069,2.8540610117713583,12.0,18.0,-6.0,True,False,12.0,total,C_adapter,D
+53145,Beke Sterner,Fullback / Wing Back,642.624033333,1217.0,3.140088072780421,3.2875193031615106,14.0,12.0,2.0,True,True,12.0,total,C_adapter,D
+409155,Marlene Müller,Fullback / Wing Back,829.366833333,948.0,3.3491808960011586,3.0657822654871687,13.0,13.0,0.0,True,True,13.0,total,C_adapter,D
+324158,Martyna Wiankowska,Fullback / Wing Back,676.617916667,1030.0,2.859820946528035,2.9959702693011496,16.0,14.0,2.0,False,True,14.0,total,C_adapter,D
+25492,Giulia Gwinn,Fullback / Wing Back,460.392883333,862.0,3.034042406391024,2.780984415151638,15.0,20.0,-5.0,True,False,15.0,total,C_adapter,D
+25770,Lisa Boattin,Fullback / Wing Back,657.982216667,1482.0,2.8068272813173976,2.9586670218966087,17.0,15.0,2.0,False,True,15.0,total,C_adapter,D
+15214,Ewa Pajor,Wide Midfielder / Winger,434.9164,562.0,9.668271898734426,10.022887175838678,1.0,1.0,0.0,True,True,1.0,total,C_adapter,D
+15555,Lauren Hemp,Wide Midfielder / Winger,705.52245,962.0,9.063393754556754,8.474589163972515,2.0,2.0,0.0,True,True,2.0,total,C_adapter,D
+42247,Morgan Weaver,Wide Midfielder / Winger,840.572383333,884.0,7.488738868176432,7.275181817575378,3.0,4.0,-1.0,True,True,3.0,total,C_adapter,D
+50020,Antionette Oyedupe Payne,Wide Midfielder / Winger,1088.639183333,1182.0,7.175105182414359,7.678704542872724,4.0,3.0,1.0,True,True,3.0,total,C_adapter,D
+26156,Rasheedat Busayo Ajibade,Wide Midfielder / Winger,577.965033333,801.0,6.898053290729214,7.050438224683284,5.0,5.0,0.0,True,True,5.0,total,C_adapter,D
+222682,Salma Paralluelo Ayingono,Wide Midfielder / Winger,273.1308,531.0,6.696026535248496,6.637705563579811,6.0,6.0,0.0,True,True,6.0,total,C_adapter,D
+10386,Caroline Graham Hansen,Wide Midfielder / Winger,216.110933333,489.0,6.582958907759248,5.5222500582333165,7.0,9.0,-2.0,True,True,7.0,total,C_adapter,D
+32838,Claudia Pina Medina,Wide Midfielder / Winger,404.2884,896.0,6.474399464734894,5.857903183584524,8.0,7.0,1.0,True,True,7.0,total,C_adapter,D
+10656,Lineth Beerensteyn,Wide Midfielder / Winger,644.161616667,735.0,5.707884648124497,5.855586124301237,9.0,8.0,1.0,True,True,8.0,total,C_adapter,D
+49974,Michela Catena,Wide Midfielder / Winger,777.180833333,1162.0,4.749466371079309,4.573422785397578,10.0,13.0,-3.0,True,True,10.0,total,C_adapter,D
+10258,Linda Dallmann,Wide Midfielder / Winger,410.597816667,614.0,4.573144636751602,4.798948685023634,11.0,10.0,1.0,True,True,10.0,total,C_adapter,D
+224822,Jutta Rantala,Wide Midfielder / Winger,576.876233333,828.0,4.130325514742018,4.704968048332662,15.0,11.0,4.0,True,True,11.0,total,C_adapter,D
+105708,Kerolin Nicoli Israel Ferraz,Wide Midfielder / Winger,315.696933333,475.0,4.493918846729551,4.5414661452361536,12.0,14.0,-2.0,True,True,12.0,total,C_adapter,D
+46230,Chanté-Mary Dompig,Wide Midfielder / Winger,507.340266667,646.0,3.894001744074275,4.610867485580269,20.0,12.0,8.0,False,True,12.0,total,C_adapter,D
+46941,Vivien Endemann,Wide Midfielder / Winger,347.4174,506.0,4.391231367971271,4.475265674338317,13.0,15.0,-2.0,True,True,13.0,total,C_adapter,D
+106836,Michelle Alozie,Wide Midfielder / Winger,477.622233333,565.0,4.350966410077115,4.253075600995277,14.0,16.0,-2.0,True,False,14.0,total,C_adapter,D
+24396,Jovana Damnjanović,Attacking Midfield,218.611583333,280.0,1.6251163633168206,1.4971949234943434,1.0,1.0,0.0,True,True,1.0,per90,C_adapter,D
+10220,Kosovare Asllani,Attacking Midfield,313.87035,489.0,1.2277551810766385,1.3018312831104955,2.0,2.0,0.0,True,True,2.0,per90,C_adapter,D
+47285,Taylor Kornieck,Attacking Midfield,165.3608,199.0,1.1366986259000678,0.9887814258913412,3.0,3.0,0.0,True,True,3.0,per90,C_adapter,D
+4641,Francesca Kirby,Attacking Midfield,89.7796,111.0,0.9295814620020586,0.9863823317906881,4.0,4.0,0.0,True,True,4.0,per90,C_adapter,D
+10108,Pernille Mosegaard Harder,Attacking Midfield,422.706,619.0,0.9081082369135012,0.9500638333900787,5.0,5.0,0.0,True,True,5.0,per90,C_adapter,D
+4638,Drew Spence,Attacking Midfield,298.676883333,485.0,0.8834510488417188,0.7892392946360827,6.0,8.0,-2.0,True,True,6.0,per90,C_adapter,D
+10259,Lina Magull,Attacking Midfield,366.93455,661.0,0.762039598373091,0.8453499513905433,10.0,6.0,4.0,True,True,6.0,per90,C_adapter,D
+5016,Jessica Fishlock,Attacking Midfield,233.030183333,234.0,0.826584170837542,0.6880187784829412,7.0,10.0,-3.0,True,True,7.0,per90,C_adapter,D
+30556,Bethany Balcer,Attacking Midfield,244.889566667,310.0,0.8004332163481886,0.8416948441727631,9.0,7.0,2.0,True,True,7.0,per90,C_adapter,D
+42256,Ashley Nicole Sanchez,Attacking Midfield,209.931133333,227.0,0.8213423125318926,0.7117435427341275,8.0,9.0,-1.0,True,True,8.0,per90,C_adapter,D
+15623,Vivianne Miedema,Attacking Midfield,81.34115,117.0,0.7504532767081894,0.6244684974363081,11.0,11.0,0.0,True,True,11.0,per90,C_adapter,D
+401728,Jennifer Onyi Echegini,Attacking Midfield,165.8597,189.0,0.6749899328449215,0.621727733493142,12.0,12.0,0.0,True,True,12.0,per90,C_adapter,D
+47022,Laura Freigang,Attacking Midfield,539.504783333,657.0,0.6699143632712736,0.5369824450694811,13.0,18.0,-5.0,True,False,13.0,per90,C_adapter,D
+32460,Karólína Lea Vilhjálmsdóttir,Attacking Midfield,590.039133333,778.0,0.5795821223275477,0.5908864556088056,15.0,13.0,2.0,True,True,13.0,per90,C_adapter,D
+31629,Anissa Lahmari,Attacking Midfield,459.429433333,601.0,0.5831603050027508,0.5652397297823052,14.0,17.0,-3.0,True,False,14.0,per90,C_adapter,D
+5096,Savannah McCaskill,Attacking Midfield,738.219683333,1241.0,0.5557464824647608,0.5700172960477984,18.0,14.0,4.0,False,True,14.0,per90,C_adapter,D
+327889,Zara Kramžar,Attacking Midfield,128.633816667,181.0,0.5592461253508373,0.5689364306863731,17.0,15.0,2.0,False,True,15.0,per90,C_adapter,D
+25491,Marina Hegering,Center Back,432.07235,1337.0,0.7559160539412649,0.6986108442426425,1.0,1.0,0.0,True,True,1.0,per90,C_adapter,D
+32229,Sara Holmgaard,Center Back,175.357933333,225.0,0.672263155943431,0.6017992435847439,2.0,3.0,-1.0,True,True,2.0,per90,C_adapter,D
+49278,Melissa Friedrich,Center Back,221.78825,372.0,0.5879767512135589,0.607041363285894,5.0,2.0,3.0,True,True,2.0,per90,C_adapter,D
+63308,Justine Vanhaevermaet,Center Back,318.75605,472.0,0.611855556391028,0.5923070747417455,3.0,5.0,-2.0,True,True,3.0,per90,C_adapter,D
+31937,Ally Prisock,Center Back,201.760016667,253.0,0.5911256575798886,0.6012408854625811,4.0,4.0,0.0,True,True,4.0,per90,C_adapter,D
+78072,Anna Patten,Center Back,300.132533333,557.0,0.5731202101345392,0.36139308790570834,6.0,25.0,-19.0,True,False,6.0,per90,C_adapter,D
+25556,Kathellen Sousa Feitoza,Center Back,152.829083333,287.0,0.3890492060089347,0.5856000213059375,22.0,6.0,16.0,False,True,6.0,per90,C_adapter,D
+47001,Rieke Dieckmann,Center Back,283.93505,477.0,0.5184419300517785,0.5166245811708895,7.0,7.0,0.0,True,True,7.0,per90,C_adapter,D
+4984,Rachel Corsie,Center Back,140.806283333,271.0,0.5124065929848584,0.4658332092318031,8.0,10.0,-2.0,True,True,8.0,per90,C_adapter,D
+10666,Dominique Johanna Anna Petrone Janssen,Center Back,287.29975,895.0,0.4909688500668762,0.49264373689206736,9.0,8.0,1.0,True,True,8.0,per90,C_adapter,D
+10230,Linda Brigitta Sembrant,Center Back,240.204366667,566.0,0.4720132640871962,0.4826878931853735,10.0,9.0,1.0,True,True,9.0,per90,C_adapter,D
+31157,Hawa Cissoko,Center Back,496.071833333,569.0,0.45851181946122277,0.4463840569636441,11.0,14.0,-3.0,True,True,11.0,per90,C_adapter,D
+370018,Shannon Cooke,Center Back,172.4835,234.0,0.40441030216669427,0.4557713038656162,19.0,11.0,8.0,False,True,11.0,per90,C_adapter,D
+15554,Gemma Bonner,Center Back,435.77615,583.0,0.44249299838547634,0.4237942122809526,12.0,16.0,-4.0,True,False,12.0,per90,C_adapter,D
+10208,Elena Linari,Center Back,631.640016667,1770.0,0.4271474310763996,0.4549279209360454,15.0,12.0,3.0,True,True,12.0,per90,C_adapter,D
+49912,Oihane Valdezate Cabornero,Center Back,410.4013,1010.0,0.43723757763486226,0.44393695746226103,13.0,15.0,-2.0,True,True,13.0,per90,C_adapter,D
+185545,Brooke Aspin,Center Back,301.0109,262.0,0.4118662884053692,0.44840470999631116,17.0,13.0,4.0,False,True,13.0,per90,C_adapter,D
+24374,Ingrid Syrstad Engen,Center Back,141.088516667,338.0,0.42726799834789525,0.24724911497100419,14.0,69.0,-55.0,True,False,14.0,per90,C_adapter,D
+15284,Aitana Bonmati Conca,Central Midfield,209.15985,493.0,1.5938188943954608,1.4162161079803433,1.0,1.0,0.0,True,True,1.0,per90,C_adapter,D
+10650,Jill Roord,Central Midfield,147.18055,277.0,1.2859604636828472,1.2144238578319138,2.0,3.0,-1.0,True,True,2.0,per90,C_adapter,D
+10143,Alexia Putellas Segura,Central Midfield,201.93,525.0,1.266407910192152,1.3974988562211113,3.0,2.0,1.0,True,True,2.0,per90,C_adapter,D
+372201,Eva Van Deursen,Central Midfield,77.57945,111.0,1.0324174389253762,1.1257931593159443,4.0,4.0,0.0,True,True,4.0,per90,C_adapter,D
+10228,Manuela Giugliano,Central Midfield,611.654866667,962.0,1.0308671964390534,1.1071376900743555,5.0,5.0,0.0,True,True,5.0,per90,C_adapter,D
+270217,Talia Victoria Della Peruta,Central Midfield,114.443416667,110.0,0.8916555700404978,0.9661238271225606,6.0,6.0,0.0,True,True,6.0,per90,C_adapter,D
+10242,Laura Feiersinger,Central Midfield,341.79795,565.0,0.8654953610479248,0.8973018347899371,7.0,7.0,0.0,True,True,7.0,per90,C_adapter,D
+30850,Maëlle Antonia Garbino,Central Midfield,229.316566667,333.0,0.8429188737351245,0.8220903329392131,8.0,8.0,0.0,True,True,8.0,per90,C_adapter,D
+48267,Martina Tomaselli,Central Midfield,179.009666667,258.0,0.8048046952348779,0.7804271248591337,9.0,10.0,-1.0,True,True,9.0,per90,C_adapter,D
+24237,Missy Bo Kearns,Central Midfield,303.315833333,389.0,0.7716119056543339,0.8088253461984649,10.0,9.0,1.0,True,True,9.0,per90,C_adapter,D
+19498,Jessica Park,Central Midfield,512.552966667,803.0,0.7108857959686153,0.5294019910645973,11.0,20.0,-9.0,True,False,11.0,per90,C_adapter,D
+135780,Victoria López,Central Midfield,343.507933333,601.0,0.6616688880896381,0.7080499286841256,12.0,11.0,1.0,True,True,11.0,per90,C_adapter,D
+34499,Hanna Ulrika Bennison,Central Midfield,175.9958,212.0,0.5132893652595566,0.6093807287306604,23.0,12.0,11.0,False,True,12.0,per90,C_adapter,D
+33675,Laura Madison Blindkilde Brown,Central Midfield,251.230266667,471.0,0.6321255143625505,0.48168897438891145,13.0,27.0,-14.0,True,False,13.0,per90,C_adapter,D
+322359,Ceri Holland,Central Midfield,478.52345,564.0,0.5865682262170898,0.6066195082529725,15.0,13.0,2.0,True,True,13.0,per90,C_adapter,D
+82255,Giulia Giacobbo,Central Midfield,366.4686,466.0,0.6250512730566439,0.6059827125301859,14.0,14.0,0.0,True,True,14.0,per90,C_adapter,D
+46974,Marie Therese Höbinger,Central Midfield,404.333533333,663.0,0.5534376524677317,0.5952657670053916,18.0,15.0,3.0,False,True,15.0,per90,C_adapter,D
+15287,Patricia Guijarro Gutiérrez,Defensive Midfield,114.291233333,343.0,1.4003912041642275,1.430744131749286,1.0,2.0,-1.0,True,True,1.0,per90,C_adapter,D
+49994,Silvia Rubio Álvarez,Defensive Midfield,84.000266667,191.0,1.3844373176904776,1.6338040921629058,2.0,1.0,1.0,True,True,1.0,per90,C_adapter,D
+19501,Hayley Ladd,Defensive Midfield,171.459583333,327.0,1.0097923168353624,0.961040899485484,3.0,3.0,0.0,True,True,3.0,per90,C_adapter,D
+135947,Lucy Parker,Defensive Midfield,154.766466667,213.0,0.8448073324233966,0.9021320661307464,4.0,4.0,0.0,True,True,4.0,per90,C_adapter,D
+15648,Melanie Leupolz,Defensive Midfield,146.971583333,229.0,0.7847276658015927,0.7669333727889296,5.0,6.0,-1.0,True,True,5.0,per90,C_adapter,D
+389323,Sierra Enge,Defensive Midfield,255.895933333,344.0,0.7658907608299707,0.7883684707336729,7.0,5.0,2.0,True,True,5.0,per90,C_adapter,D
+10275,Sofie Junge Pedersen,Defensive Midfield,383.8132,871.0,0.7766753252556755,0.7565530064135824,6.0,8.0,-2.0,True,True,6.0,per90,C_adapter,D
+50156,Claudia  Zornoza Sánchez,Defensive Midfield,413.92455,1027.0,0.6749469143394348,0.7610063981716899,9.0,7.0,2.0,True,True,7.0,per90,C_adapter,D
+46992,Fabienne Dongus,Defensive Midfield,131.06375,260.0,0.7531966795751468,0.7226544171963193,8.0,10.0,-2.0,True,True,8.0,per90,C_adapter,D
+136945,Adriana Achcińska,Defensive Midfield,232.881383333,282.0,0.6328596299769963,0.7464149246147561,14.0,9.0,5.0,True,True,9.0,per90,C_adapter,D
+123622,Brianna Alexis Pinto,Defensive Midfield,197.6683,211.0,0.6590227817802771,0.5869670546567457,10.0,15.0,-5.0,True,True,10.0,per90,C_adapter,D
+49835,Teresa Abelleira Dueñas,Defensive Midfield,353.646666667,1118.0,0.6412731554294674,0.589805940447662,11.0,14.0,-3.0,True,True,11.0,per90,C_adapter,D
+25693,Karen Araya,Defensive Midfield,992.798466667,1786.0,0.6356810433764681,0.6626853148495573,12.0,11.0,1.0,True,True,11.0,per90,C_adapter,D
+47029,Jana Radosavljević,Defensive Midfield,170.373683333,160.0,0.6094303953209754,0.6297974547493427,16.0,12.0,4.0,False,True,12.0,per90,C_adapter,D
+218429,Olivia Van der Jagt,Defensive Midfield,187.80805,253.0,0.6349739598443485,0.5129027591516261,13.0,20.0,-7.0,True,False,13.0,per90,C_adapter,D
+102587,Mariana Cerro,Defensive Midfield,530.469066667,846.0,0.6016834347455808,0.5936819987786195,17.0,13.0,4.0,False,True,13.0,per90,C_adapter,D
+386105,Lisa Fjeldstad Naalsund,Defensive Midfield,411.972883333,582.0,0.6309671271125883,0.5449274654416512,15.0,18.0,-3.0,True,False,15.0,per90,C_adapter,D
+25554,Khadija Monifa Shaw,Forward,385.938033333,366.0,1.8143256803692804,1.7497780442639537,1.0,2.0,-1.0,True,True,1.0,per90,C_adapter,D
+32340,Fenna Kalma,Forward,157.1921,131.0,1.4544052027945695,1.7611913467479299,3.0,1.0,2.0,True,True,1.0,per90,C_adapter,D
+102588,Jone Amezaga,Forward,220.167866667,182.0,1.7162553926790107,1.687911207866354,2.0,3.0,-1.0,True,True,2.0,per90,C_adapter,D
+32854,Racheal Kundananji,Forward,383.395983333,483.0,1.4522066651713446,1.5385497510162338,4.0,4.0,0.0,True,True,4.0,per90,C_adapter,D
+25541,Valentina Giacinti,Forward,434.471166667,429.0,1.4119927060239323,1.4591480297434487,5.0,5.0,0.0,True,True,5.0,per90,C_adapter,D
+10161,María Francesca Caldentey Oliver,Forward,278.789166667,890.0,1.4098983458333656,1.3117038684585423,6.0,9.0,-3.0,True,True,6.0,per90,C_adapter,D
+24881,Asisat Lamina Oshoala,Forward,196.4456,105.0,1.2817315772060778,1.4264248556809853,9.0,6.0,3.0,True,True,6.0,per90,C_adapter,D
+45294,Giovana Queiroz Costa,Forward,455.708016667,531.0,1.401268384734389,1.4182140734552646,7.0,7.0,0.0,True,True,7.0,per90,C_adapter,D
+63424,Nikola Karczewska,Forward,492.870516667,498.0,1.2979203889288315,1.2219095320077344,8.0,12.0,-4.0,True,True,8.0,per90,C_adapter,D
+47521,Alessia Russo,Forward,255.080166667,261.0,1.2655490335179937,1.3731159149717125,10.0,8.0,2.0,True,True,8.0,per90,C_adapter,D
+325210,Ivonne Chacón,Forward,345.256933333,351.0,1.2486428829173404,1.2864796401591345,11.0,10.0,1.0,True,True,10.0,per90,C_adapter,D
+62670,Evelyn Ijeh,Forward,199.082666667,218.0,1.1434395393997883,1.2486627032488595,12.0,11.0,1.0,True,True,11.0,per90,C_adapter,D
+224158,Paulina Tanya Nyström,Forward,82.224283333,115.0,1.1101518290812047,0.976802874276905,13.0,18.0,-5.0,True,False,13.0,per90,C_adapter,D
+46549,Nicole Anyomi,Forward,442.662333333,461.0,1.032417299931919,1.0655684398483825,15.0,13.0,2.0,True,True,13.0,per90,C_adapter,D
+10648,Shanice van de Sanden,Forward,177.181733333,210.0,1.0359713884265904,1.0253684947539397,14.0,17.0,-3.0,True,False,14.0,per90,C_adapter,D
+408440,Jacqueline Owusu,Forward,214.432866667,263.0,1.010882662123628,1.062352677000133,18.0,14.0,4.0,False,True,14.0,per90,C_adapter,D
+25542,Ludmila da Silva,Forward,310.627266667,277.0,0.9105068864197264,1.0618504921831127,24.0,15.0,9.0,False,True,15.0,per90,C_adapter,D
+10376,Carolin Simon,Fullback / Wing Back,70.099416667,145.0,1.3950392139499685,1.4354070885736954,1.0,1.0,0.0,True,True,1.0,per90,C_adapter,D
+10215,Fridolina Rolfö,Fullback / Wing Back,87.89635,288.0,1.2319266251878251,1.0882178796368644,2.0,2.0,0.0,True,True,2.0,per90,C_adapter,D
+46224,Lucia Di Guglielmo,Fullback / Wing Back,392.993133333,770.0,0.91547195706845,0.9038890516827359,3.0,3.0,0.0,True,True,3.0,per90,C_adapter,D
+131575,Mengwen Li,Fullback / Wing Back,117.559166667,116.0,0.721308547606242,0.40862747886938844,4.0,26.0,-22.0,True,False,4.0,per90,C_adapter,D
+10148,Marta Torrejón Moya,Fullback / Wing Back,502.31305,1229.0,0.6591580200263887,0.6504226194626462,5.0,4.0,1.0,True,True,4.0,per90,C_adapter,D
+415257,Laura Camino Fernández,Fullback / Wing Back,293.8612,385.0,0.6080634665771314,0.6156930727021298,6.0,5.0,1.0,True,True,5.0,per90,C_adapter,D
+25492,Giulia Gwinn,Fullback / Wing Back,460.392883333,862.0,0.5931104203834672,0.5436413255385072,7.0,6.0,1.0,True,True,6.0,per90,C_adapter,D
+46639,Ona Batlle Pascual,Fullback / Wing Back,386.278133333,975.0,0.5579867400999945,0.5179366006494166,9.0,7.0,2.0,True,True,7.0,per90,C_adapter,D
+50175,Paula Tomás Serer,Fullback / Wing Back,274.985533333,544.0,0.5623721779497388,0.4921552167668697,8.0,10.0,-2.0,True,True,8.0,per90,C_adapter,D
+84730,Anna Gerhardt,Fullback / Wing Back,779.733033333,1073.0,0.4804815557930472,0.5104903842463863,14.0,8.0,6.0,True,True,8.0,per90,C_adapter,D
+10100,Janice Cayman,Fullback / Wing Back,522.398316667,728.0,0.48052676398115574,0.4930340440901334,13.0,9.0,4.0,True,True,9.0,per90,C_adapter,D
+408656,Eider Arana Mugueta,Fullback / Wing Back,727.9464,773.0,0.5319729299138445,0.488070949249776,10.0,11.0,-1.0,True,True,10.0,per90,C_adapter,D
+79565,Emma Ramírez Gorgoso,Fullback / Wing Back,656.84175,1321.0,0.5067157612444825,0.4870784709416528,11.0,13.0,-2.0,True,True,11.0,per90,C_adapter,D
+212927,Lisann Kaut,Fullback / Wing Back,65.9583,108.0,0.4873074025270125,0.38376685718278625,12.0,34.0,-22.0,True,False,12.0,per90,C_adapter,D
+50008,Raquel Peña Rodríguez,Fullback / Wing Back,207.005033333,380.0,0.45867860887735207,0.4876364683908218,22.0,12.0,10.0,False,True,12.0,per90,C_adapter,D
+5077,Jasmyne Spencer,Fullback / Wing Back,378.688683333,500.0,0.45579537145758786,0.47838999072936017,23.0,14.0,9.0,False,True,14.0,per90,C_adapter,D
+4848,Ashleigh Neville,Fullback / Wing Back,772.192883333,1086.0,0.4744358082414871,0.44293495728652926,15.0,21.0,-6.0,True,False,15.0,per90,C_adapter,D
+43039,Katharina Naschenweng,Fullback / Wing Back,373.727716667,793.0,0.4681317000329962,0.47211986151187035,19.0,15.0,4.0,False,True,15.0,per90,C_adapter,D
+10386,Caroline Graham Hansen,Wide Midfielder / Winger,216.110933333,489.0,2.741491568987006,2.299756414800077,1.0,1.0,0.0,True,True,1.0,per90,C_adapter,D
+222682,Salma Paralluelo Ayingono,Wide Midfielder / Winger,273.1308,531.0,2.2064241314870556,2.187206645029352,2.0,2.0,0.0,True,True,2.0,per90,C_adapter,D
+15214,Ewa Pajor,Wide Midfielder / Winger,434.9164,562.0,2.0007166225189446,2.074099403530152,3.0,3.0,0.0,True,True,3.0,per90,C_adapter,D
+32838,Claudia Pina Medina,Wide Midfielder / Winger,404.2884,896.0,1.441287832710858,1.3040475228144242,4.0,5.0,-1.0,True,True,4.0,per90,C_adapter,D
+338839,Leela Egli,Wide Midfielder / Winger,99.519316667,110.0,1.3502800289470096,1.5009931378903736,5.0,4.0,1.0,True,True,4.0,per90,C_adapter,D
+105708,Kerolin Nicoli Israel Ferraz,Wide Midfielder / Winger,315.696933333,475.0,1.2811423029536977,1.2946972552315534,6.0,6.0,0.0,True,True,6.0,per90,C_adapter,D
+62710,Johanna Rytting-Kaneryd,Wide Midfielder / Winger,138.660116667,184.0,1.2465096073839288,1.2382080958027217,7.0,7.0,0.0,True,True,7.0,per90,C_adapter,D
+6818,Hayley Emma Raso,Wide Midfielder / Winger,122.26645,222.0,1.2349000582275649,1.2299909341908961,8.0,8.0,0.0,True,True,8.0,per90,C_adapter,D
+15555,Lauren Hemp,Wide Midfielder / Winger,705.52245,962.0,1.1561721925505104,1.0810613110291902,9.0,11.0,-2.0,True,True,9.0,per90,C_adapter,D
+46941,Vivien Endemann,Wide Midfielder / Winger,347.4174,506.0,1.137567730106248,1.1593371854445071,10.0,9.0,1.0,True,True,9.0,per90,C_adapter,D
+26156,Rasheedat Busayo Ajibade,Wide Midfielder / Winger,577.965033333,801.0,1.0741563249691184,1.097885518371662,11.0,10.0,1.0,True,True,10.0,per90,C_adapter,D
+15619,Bethany Mead,Wide Midfielder / Winger,263.4258,488.0,1.069378744811492,1.055301170538844,12.0,12.0,0.0,True,True,12.0,per90,C_adapter,D
+87187,Mille Gejl Jensen,Wide Midfielder / Winger,119.6708,167.0,1.0548530085474335,1.0533952523163872,13.0,13.0,0.0,True,True,13.0,per90,C_adapter,D
+26585,Annamaria Serturini,Wide Midfielder / Winger,103.0204,165.0,1.0454111171180884,0.8753043535485955,14.0,20.0,-6.0,True,False,14.0,per90,C_adapter,D
+10258,Linda Dallmann,Wide Midfielder / Winger,410.597816667,614.0,1.002399429808569,1.0518940045957617,15.0,14.0,1.0,True,True,14.0,per90,C_adapter,D
+190348,Sveindís Jane Jónsdóttir,Wide Midfielder / Winger,151.335266667,181.0,0.80683928408307,0.9449504637929893,22.0,15.0,7.0,False,True,15.0,per90,C_adapter,D

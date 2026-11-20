@@ -1,0 +1,15 @@
+position_bucket,model,players,top_k,left_selected,right_selected,shared_players,left_only_players,right_only_players,overlap_pct,boundary_tie,min_possible_overlap_pct,retained_players,entrants,exits
+Attacking Midfield,D,63,15,15,15,6,9,9,40.0,False,0.0,6,9,9
+Attacking Midfield,C_adapter,63,15,15,15,8,7,7,53.333333333333336,False,0.0,8,7,7
+Center Back,D,211,15,15,15,3,12,12,20.0,False,0.0,3,12,12
+Center Back,C_adapter,211,15,15,15,2,13,13,13.333333333333334,False,0.0,2,13,13
+Central Midfield,D,83,15,15,15,7,8,8,46.666666666666664,False,0.0,7,8,8
+Central Midfield,C_adapter,83,15,15,15,6,9,9,40.0,False,0.0,6,9,9
+Defensive Midfield,D,168,15,15,15,4,11,11,26.666666666666668,False,0.0,4,11,11
+Defensive Midfield,C_adapter,168,15,15,15,4,11,11,26.666666666666668,False,0.0,4,11,11
+Forward,D,147,15,15,15,7,8,8,46.666666666666664,False,0.0,7,8,8
+Forward,C_adapter,147,15,15,15,7,8,8,46.666666666666664,False,0.0,7,8,8
+Fullback / Wing Back,D,224,15,15,15,5,10,10,33.333333333333336,False,0.0,5,10,10
+Fullback / Wing Back,C_adapter,224,15,15,15,7,8,8,46.666666666666664,False,0.0,7,8,8
+Wide Midfielder / Winger,D,163,15,15,15,9,6,6,60.0,False,0.0,9,6,6
+Wide Midfielder / Winger,C_adapter,163,15,15,15,9,6,6,60.0,False,0.0,9,6,6

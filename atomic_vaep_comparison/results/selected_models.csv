@@ -1,0 +1,6 @@
+directory,analysis_name,role,source,method,budget,seed
+models/A,A,supporting,A,direct,0,42
+models/C,C,supporting,C,direct,0,42
+runs/C/beta/b540_s17,C_adapter,main,C,beta,540,17
+runs/C/continued_match/b540_s17,C_continued,supporting,C,continued_match,540,17
+models/D,D,main,D,direct,540,42
