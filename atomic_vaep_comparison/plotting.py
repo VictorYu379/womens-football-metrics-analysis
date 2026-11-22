@@ -74,19 +74,21 @@ def action_plot(summary, pairs, min_actions=500):
     return figure
 
 
-def spatial_plot(summary, pairs, min_actions=20):
+def spatial_plot(summary, pairs, min_actions=20, color_limit=.03):
     event_types = summary.type_name.drop_duplicates().tolist()
     minimum = np.where(summary.type_name.eq("shot"), 10, min_actions)
     visible = summary.loc[summary.actions.ge(minimum) & summary.mean_delta.notna()]
     if visible.empty:
         raise ValueError("No pitch cells meet the display thresholds")
-    limit = float(visible.mean_delta.abs().quantile(.98))
-    if not np.isfinite(limit) or limit == 0:
-        limit = max(float(visible.mean_delta.abs().max()), .001)
+    limit = float(color_limit)
+    if not np.isfinite(limit) or limit <= 0:
+        raise ValueError("Spatial color limit must be positive and finite")
     panels = [(left, right, event_type) for left, right in pairs for event_type in event_types]
     figure, axes = plt.subplots(int(np.ceil(len(panels) / 3)), 3, figsize=(18, 5 * int(np.ceil(len(panels) / 3))),
                                 layout="constrained", squeeze=False)
-    pitch = Pitch(pitch_type="custom", pitch_length=105, pitch_width=68, line_color="#333333", linewidth=.8)
+    pitch = Pitch(pitch_type="custom", pitch_length=105, pitch_width=68, pitch_color="white",
+                  line_color="black", linewidth=1., line_zorder=3, goal_type="box", corner_arcs=True)
+    colormap = plt.colormaps["coolwarm"].with_extremes(bad=(1., 1., 1., 0.))
     for axis, (left, right, event_type) in zip(axes.ravel(), panels):
         pitch.draw(ax=axis)
         selected = summary.loc[(summary.type_name == event_type) & (summary.left == left) & (summary.right == right)]
@@ -94,14 +96,18 @@ def spatial_plot(summary, pairs, min_actions=20):
         counts = selected.pivot(index="row", columns="column", values="actions").to_numpy()
         threshold = 10 if event_type == "shot" else min_actions
         image = axis.imshow(np.ma.masked_where(counts < threshold, means), extent=(0, 105, 0, 68), origin="lower",
-                            cmap="RdBu_r", vmin=-limit, vmax=limit, alpha=.85, zorder=0, interpolation="nearest")
+                            cmap=colormap, vmin=-limit, vmax=limit, alpha=.86, zorder=1, interpolation="none")
+        for x_value in np.linspace(0, 105, means.shape[1] + 1):
+            axis.plot([x_value, x_value], [0, 68], color="white", alpha=.35, linewidth=.4, zorder=2)
+        for y_value in np.linspace(0, 68, means.shape[0] + 1):
+            axis.plot([0, 105], [y_value, y_value], color="white", alpha=.35, linewidth=.4, zorder=2)
         axis.set_title(f"{event_type}: {short_name(left)} minus {short_name(right)}")
     for axis in axes.ravel()[len(panels):]:
         axis.set_visible(False)
     figure.colorbar(image, ax=axes.ravel().tolist(), shrink=.8, label="Mean Atomic-VAEP difference", extend="both", pad=.02)
-    figure.suptitle("Action-level spatial differences; attack to the right; shared symmetric color scale")
+    figure.suptitle(f"Action-level spatial differences; attack to the right; fixed color scale [{-limit:g}, {limit:g}]")
     figure.supxlabel(f"Shots: at least 10 actions/cell; other types: {min_actions}. Blank is not zero.\n"
-                     "Colors clip at the 98th percentile of absolute grid means; tables and player scores are not clipped.", fontsize=10)
+                     "Same color scale as the enriched Atomic-VAEP notebook; values outside the range saturate, not the data.", fontsize=10)
     return figure
 
 

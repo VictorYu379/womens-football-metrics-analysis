@@ -10,7 +10,7 @@ from scipy import stats
 
 from analysis import (attach_pass_heights, compare_top_rankings, distribution_summary, normalization_top_comparison,
                       rank_movement_counts, ranking_metrics, shortlist_scope, spatial_summary)
-from plotting import action_distribution_plot, player_plot, spatial_plot
+from plotting import action_distribution_plot, player_plot, rank_movement_plot, spatial_plot
 
 
 HOME = Path(__file__).resolve().parents[1]
@@ -97,6 +97,14 @@ class EnrichedAnalysisTests(unittest.TestCase):
         self.assertGreater(counts.outside_display.iloc[0], 0)
         self.assertEqual(set(counts.rank_delta), set(range(-10, 11)))
 
+    def test_rank_heatmap_uses_shared_reference_color_scale(self):
+        counts = rank_movement_counts(self.players(), "C_adapter", "D", "total")
+        figure = rank_movement_plot(counts, ("C_adapter", "D"), "total", 224)
+        image = figure.axes[0].images[0]
+        self.assertEqual(image.get_cmap().name, "Blues")
+        self.assertEqual(image.get_clim(), (0, 224))
+        plt.close(figure)
+
     def test_passing_metadata_excludes_direct_shots_and_keeps_unknown(self):
         actions = pd.DataFrame({"game_id": [1, 1, 1, 1], "action_id": [0, 1, 2, 3],
                                 "original_event_id": ["one", "two", "three", "one"],
@@ -133,9 +141,35 @@ class EnrichedAnalysisTests(unittest.TestCase):
         images = [image for axis in figure.axes for image in axis.images]
         self.assertEqual(len(images), 6)
         self.assertEqual(len({image.get_clim() for image in images}), 1)
+        for image in images:
+            self.assertEqual(image.get_cmap().name, "coolwarm")
+            self.assertEqual(image.get_clim(), (-.03, .03))
+            self.assertEqual(image.get_alpha(), .86)
+            np.testing.assert_array_equal(image.get_cmap().get_bad(), [1., 1., 1., 0.])
         self.assertEqual(images[0].get_array().count(), 1)
+        self.assertAlmostEqual(float(images[0].get_array().compressed()[0]), .1)
         self.assertEqual(images[1].get_array().count(), 0)
         plt.close(figure)
+
+    def test_notebooks_share_fixed_heatmap_limits(self):
+        paths = [HOME / "01_compare_atomic_vaep.ipynb",
+                 HOME.parent / "enriched_atomic_vaep_features_competition_events.ipynb"]
+        for path in paths:
+            if not path.exists():
+                continue
+            constants = {}
+            for cell in nbformat.read(path, as_version=4).cells:
+                if cell.cell_type != "code":
+                    continue
+                for node in ast.parse(cell.source).body:
+                    if not isinstance(node, ast.Assign) or not isinstance(node.value, ast.Constant):
+                        continue
+                    for target in node.targets:
+                        if isinstance(target, ast.Name):
+                            constants[target.id] = node.value.value
+            with self.subTest(notebook=path.name):
+                self.assertEqual(constants["SPATIAL_COLOR_LIMIT"], .03)
+                self.assertEqual(constants["RANK_MOVEMENT_COLOR_MAX"], 224)
 
     def test_scatter_labels_do_not_overlap_or_cross_axis_border(self):
         figure = player_plot(self.players(), [("C_adapter", "D")], "total", annotate=True)

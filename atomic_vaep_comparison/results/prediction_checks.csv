@@ -1,6 +1,6 @@
 model,cached,reference_checked,maximum_prediction_difference,seconds
-A,False,True,0.0,11.48869840009138
-C,False,True,0.0,19.25543999997899
-C_adapter,False,True,0.0,18.831438000081107
-C_continued,False,True,0.0,19.60610330000054
-D,False,True,0.0,19.870771799935028
+A,True,True,0.0,0.7970483000390232
+C,True,True,0.0,0.7114954000571743
+C_adapter,True,True,0.0,0.7168724000221118
+C_continued,True,True,0.0,0.717722799978219
+D,True,True,0.0,0.7702175999293104
